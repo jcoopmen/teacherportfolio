@@ -621,11 +621,11 @@ footer .wrap { padding-block: 26px; display: flex; flex-wrap: wrap; justify-cont
         </details>
         <details class="acc">
           <summary><span class="acc-num">06</span><span class="acc-title">Assessment ought to be authentic</span><span class="acc-icon" aria-hidden="true"></span></summary>
-          <div class="acc-body"><p>Where possible, I always try to ensure that assessment tasks resemble the work of designers, producers, and builders in industry, and I like to share those criteria from the outset. In my classes, for example, students have worked as architects proposing a redesign of their school courtyard and as game designers responding to a client. I prioritize assessment for and as learning, offer multiple opportunities to submit formative work to reduce anxiety, and treat assessment as a dialogue with students about how to improve.</p></div>
+          <div class="acc-body"><p>Where possible, I always try to ensure that assessment tasks resemble the work of designers, producers, and builders in industry, and I like to share those criteria from the outset. In my classes, for example, students have worked as architects proposing a redesign of their school courtyard and <a href="#project-impact-game-design">as game designers responding to a client</a>. I prioritize assessment for and as learning, offer multiple opportunities to submit formative work to reduce anxiety, and treat assessment as a dialogue with students about how to improve.</p></div>
         </details>
         <details class="acc">
           <summary><span class="acc-num">07</span><span class="acc-title">Design can be leveraged for people, community and planet</span><span class="acc-icon" aria-hidden="true"></span></summary>
-          <div class="acc-body"><p>I try my best to create projects that connect technical skill to social justice, community needs, and sustainability. Through this, I try to highlight the idea that technology is at once the source of, and a potential solution to, some of the world’s most pressing challenges. My students have proposed community housing projects for Windsor neighbourhoods using census data, designed textile products that promote the UN Sustainable Development Goals, and built games that raise awareness of social justice issues facing children.</p></div>
+          <div class="acc-body"><p>I try my best to create projects that connect technical skill to social justice, community needs, and sustainability. Through this, I try to highlight the idea that technology is at once the source of, and a potential solution to, some of the world’s most pressing challenges. My students have proposed community housing projects for Windsor neighbourhoods using census data, designed textile products that promote the UN Sustainable Development Goals, and <a href="#project-impact-game-design">built games that raise awareness of social justice issues facing children</a>.</p></div>
         </details>
         <details class="acc">
           <summary><span class="acc-num">08</span><span class="acc-title">Indigenous knowledge and perspectives are invaluable</span><span class="acc-icon" aria-hidden="true"></span></summary>
@@ -928,7 +928,7 @@ footer .wrap { padding-block: 26px; display: flex; flex-wrap: wrap; justify-cont
       ]
     },
     {
-      slug: "impact-game-design", title: "Impact Game Design", context: "Grade 7 MYP Design · Madrid, Spain", cats: ["myp"],
+      slug: "impact-game-design", featured: false, title: "Impact Game Design", context: "Grade 7 MYP Design · Madrid, Spain", cats: ["myp"],
       card: ["gd-2-11", "A coloured storyboard for a student game about a social justice issue"], hero: ["gd-3-6", "Annotated code blocks from a student game"],
       summary: "Acting as game designers for a company that makes free web games, students designed and coded an educational game that raises awareness of a social justice issue facing school-aged children.",
       meta: [["Course", "MYP Design, Grade 7"], ["School", "International College Spain, Madrid"], ["Tools", "Code.org, Scratch"], ["Year", "2024–25"]],
@@ -1069,7 +1069,7 @@ footer .wrap { padding-block: 26px; display: flex; flex-wrap: wrap; justify-cont
     }).join("");
   }
   function renderGrid() {
-    var shown = PROJECTS.filter(function (p) { return filter === "all" || p.cats.indexOf(filter) !== -1; });
+    var shown = PROJECTS.filter(function (p) { return (filter === "all" && p.featured !== false) || p.cats.indexOf(filter) !== -1; });
     grid.innerHTML = shown.map(function (p) {
       return '<a class="card" href="#project-' + p.slug + '">' + media(p.card[0], p.card[1], "r43") +
         '<div><h3>' + esc(p.title) + '</h3><div class="muted" style="font-size:16px">' + esc(p.context) + '</div></div></a>';
