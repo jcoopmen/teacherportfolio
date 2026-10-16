@@ -1,0 +1,1275 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jordan Coop Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=Barlow+Semi+Condensed:wght@600;700&display=swap">
+<style>
+/* Layout: white portfolio, single 1180px column; image-led project grid; graph-paper image slots; one safety-yellow accent. */
+:root {
+  --bg: #FFFFFF;
+  --surface: #F3F4F6;
+  --fg: #1B1F24;
+  --fg-2: #3B424D;
+  --muted: #5A6270;
+  --line: #E3E5E8;
+  --ph: #EEF0F2;
+  --ph-grid: #DCE0E4;
+  --accent: #F5B700;
+  --accent-ink: #1B1F24;
+  --step: #8A6400;
+  --invert-bg: #1B1F24;
+  --invert-fg: #FFFFFF;
+  --banner-bg: #1B1F24;
+  --banner-fg: #E9EBEE;
+  --display: 'Barlow Semi Condensed', 'Arial Narrow', 'Helvetica Neue', Arial, sans-serif;
+  --body: 'Barlow', 'Helvetica Neue', Arial, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #15181C; --surface: #1C2025; --fg: #ECEEF0; --fg-2: #C9CED6; --muted: #9EA6B1;
+    --line: #2C3238; --ph: #1F2429; --ph-grid: #2B3137; --accent: #F5B700; --accent-ink: #15181C;
+    --step: #F5C542; --invert-bg: #ECEEF0; --invert-fg: #15181C; --banner-bg: #0E1013; --banner-fg: #C9CED6;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #15181C; --surface: #1C2025; --fg: #ECEEF0; --fg-2: #C9CED6; --muted: #9EA6B1;
+  --line: #2C3238; --ph: #1F2429; --ph-grid: #2B3137; --accent: #F5B700; --accent-ink: #15181C;
+  --step: #F5C542; --invert-bg: #ECEEF0; --invert-fg: #15181C; --banner-bg: #0E1013; --banner-fg: #C9CED6;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--body); font-size: 18px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.08; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+a { color: var(--fg); text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+a:hover { text-decoration-color: var(--fg); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+.wrap {
+  max-width: 1180px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 720px) {
+  .wrap {
+    padding-left: max(32px, env(safe-area-inset-left, 0px));
+    padding-right: max(32px, env(safe-area-inset-right, 0px));
+  }
+}
+
+/* Preview banner */
+.banner { background: var(--banner-bg); color: var(--banner-fg); font-size: 14px; }
+.banner .wrap { padding-block: 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 16px; justify-content: space-between; }
+.theme-toggle { display: inline-flex; border: 1px solid var(--banner-fg); border-radius: 4px; overflow: hidden; }
+.theme-toggle button { background: transparent; color: var(--banner-fg); border: 0; font: 600 14px var(--body); min-height: 36px; padding: 0 14px; cursor: pointer; }
+.theme-toggle button + button { border-left: 1px solid var(--banner-fg); }
+.theme-toggle button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+
+/* Header */
+.site-header {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+  background: var(--bg); border-bottom: 1px solid var(--line);
+}
+.site-header .wrap { padding-block: 10px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 32px; }
+.brand { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; text-decoration: none; }
+.brand-mark { width: 14px; height: 14px; background: var(--accent); flex: 0 0 14px; }
+.brand-name { font-family: var(--display); font-weight: 700; font-size: 24px; letter-spacing: 0.01em; color: var(--fg); }
+.menu-btn {
+  display: none; min-height: 44px; min-width: 44px; padding: 0 14px; border: 1.5px solid var(--fg); border-radius: 4px;
+  background: transparent; color: var(--fg); font: 600 16px var(--body); cursor: pointer; align-items: center; gap: 8px;
+}
+.nav { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 26px; }
+.nav a { text-decoration: none; color: var(--fg-2); font-weight: 500; font-size: 16px; min-height: 44px; display: inline-flex; align-items: center; }
+.nav a:hover, .nav a[aria-current="true"] { color: var(--fg); text-decoration: underline; text-decoration-color: var(--accent); }
+.nav .nav-cv { background: var(--invert-bg); color: var(--invert-fg); padding: 0 18px; border-radius: 4px; }
+.nav .nav-cv:hover { color: var(--invert-fg); text-decoration: none; opacity: 0.9; }
+@media (max-width: 860px) {
+  .menu-btn { display: inline-flex; }
+  .nav { display: none; width: 100%; flex-direction: column; align-items: stretch; gap: 0; padding-bottom: 8px; }
+  .site-header.open .nav { display: flex; }
+  .nav a { border-top: 1px solid var(--line); padding: 0 4px; }
+  .nav .nav-cv { justify-content: center; margin-top: 10px; border-top: none; }
+}
+
+/* Buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 24px; border-radius: 4px; font-weight: 600; font-size: 17px; text-decoration: none; cursor: pointer; font-family: var(--body); }
+.btn-accent { background: var(--accent); color: var(--accent-ink); border: 2px solid var(--accent); }
+.btn-accent:hover { filter: brightness(0.95); }
+.btn-outline { background: transparent; color: var(--fg); border: 2px solid var(--fg); }
+.btn-outline:hover { background: var(--fg); color: var(--bg); }
+.btn-row { display: flex; flex-wrap: wrap; gap: 14px; }
+
+/* Section scaffolding */
+section { scroll-margin-top: 84px; }
+.section { padding-block: 88px 24px; }
+.kicker-bar { width: 44px; height: 5px; background: var(--accent); margin-bottom: 18px; }
+.h2 { font-size: clamp(34px, 4.4vw, 44px); }
+.lede { color: var(--fg-2); max-width: 62ch; }
+.muted { color: var(--muted); }
+
+/* Image slots */
+.ph {
+  position: relative; max-width: 100%;
+  background-color: var(--ph);
+  background-image: linear-gradient(var(--ph-grid) 1px, transparent 1px), linear-gradient(90deg, var(--ph-grid) 1px, transparent 1px);
+  background-size: 22px 22px; background-position: -1px -1px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px;
+  color: var(--muted); font-size: 14px; text-align: center; padding: 24px; border-radius: 4px;
+}
+.ph svg { width: 28px; height: 28px; }
+.ph span { background: var(--ph); padding: 2px 8px; border-radius: 2px; max-width: 30ch; }
+.r43 { aspect-ratio: 4 / 3; } .r45 { aspect-ratio: 4 / 5; } .r11 { aspect-ratio: 1 / 1; } .r1610 { aspect-ratio: 16 / 10; } .r219 { aspect-ratio: 21 / 9; }
+@media (max-width: 600px) { .r219 { aspect-ratio: 4 / 3; } }
+
+/* Photos */
+.shot { margin: 0; position: relative; overflow: hidden; border-radius: 4px; background: var(--ph); }
+.shot img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.card .shot { transition: transform 0.25s ease; }
+.card:hover .shot { transform: translateY(-3px); }
+@media (prefers-reduced-motion: reduce) { .card .shot { transition: none; } .card:hover .shot { transform: none; } }
+.reflection p + p { margin-top: 14px; }
+[tabindex="-1"]:focus { outline: none; }
+.shot.fit img { object-fit: contain; }
+.shot.on-black { background: #000; }
+.car-track { display: flex; gap: 32px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; scrollbar-width: none; overscroll-behavior-x: contain; }
+.car-track::-webkit-scrollbar { display: none; }
+.car-track:focus-visible { outline-offset: 4px; }
+.car-slide { flex: 0 0 100%; min-width: 0; margin: 0; scroll-snap-align: start; scroll-snap-stop: always; }
+.car-slide figcaption { font-size: 15px; line-height: 1.4; color: var(--muted); margin-top: 10px; }
+.car-bar { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.car-btn { width: 44px; height: 44px; flex: 0 0 44px; display: inline-flex; align-items: center; justify-content: center; border: 2px solid var(--line); border-radius: 50%; background: var(--bg); color: var(--fg); cursor: pointer; padding: 0; }
+.car-btn:hover:not([disabled]) { border-color: var(--accent); }
+.car-btn[disabled] { opacity: 0.35; cursor: default; }
+.car-btn svg { width: 18px; height: 18px; }
+.car-count { font-family: var(--display); font-weight: 600; font-size: 16px; min-width: 5ch; text-align: center; font-variant-numeric: tabular-nums; }
+.car-dots { display: flex; gap: 6px; margin-left: 6px; flex-wrap: wrap; }
+.car-dots span { width: 18px; height: 4px; background: var(--line); }
+.car-dots span.on { background: var(--accent); }
+@media (prefers-reduced-motion: reduce) { .car-track { scroll-behavior: auto; } }
+.trio { grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)) !important; }
+.pq { margin-top: 32px; padding-left: 20px; border-left: 5px solid var(--accent); }
+.pq blockquote { font-size: 20px; }
+.voices { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 28px 40px; margin-top: 36px; }
+.voices figure { margin: 0; padding: 4px 0 4px 20px; border-left: 5px solid var(--accent); }
+.voices blockquote { font-size: 19px; }
+#voices h3 { font-size: 22px; margin: 44px 0 0; }
+#voices .lede { margin-top: 14px; }
+.equity { margin-top: 64px; padding-top: 40px; border-top: 1px solid var(--line); }
+.equity .h2 { margin-bottom: 20px; }
+
+@media (min-width: 900px) { .split.about-split > .narrow { flex: 0 0 420px; } }
+.about-photo { aspect-ratio: 824 / 792; margin: 0; }
+.about-split .wide > .lede:first-child { margin-top: -6px; }
+.phil-photo { aspect-ratio: 1800 / 801; margin: 4px 0 36px; }
+.phil-photo picture, .phil-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 700px) { .phil-photo { aspect-ratio: 900 / 650; } }
+@media (max-width: 899px) { .about-split > .narrow { max-width: 520px; } }
+.vid iframe { display: block; width: 100%; height: 100%; border: 0; }
+.vid-cap { margin-top: 8px; font-size: 15px; }
+.vid-link { display: flex; align-items: center; justify-content: center; background-color: #111; background-size: cover; background-position: center; text-decoration: none; }
+.vid-link span { background: var(--accent); color: var(--accent-ink); font-weight: 600; padding: 12px 18px; border-radius: 4px; }
+.logo-tile { display: flex; align-items: center; justify-content: center; gap: 24px; padding: 28px 36px; background: #fff; border: 1px solid var(--line); border-radius: 4px; }
+.logo-tile img { max-width: 78%; max-height: 62%; object-fit: contain; }
+.logo-missing { font-size: 15px; color: #6b6f76; border: 1px dashed #b9bdc4; padding: 10px 14px; border-radius: 4px; }
+.al-voices { margin: 72px 0 40px; padding-top: 56px; border-top: 1px solid var(--line); }
+.about-photo { aspect-ratio: 4 / 5 !important; }
+.about-photo img { object-position: 50% 40%; }
+@media (min-width: 900px) { .split.about-split > .narrow { flex: 0 0 400px; } }
+.teach-band { margin-top: 56px; padding-top: 36px; border-top: 1px solid var(--line); display: grid; grid-template-columns: 220px 1fr; gap: 16px 56px; align-items: start; }
+.teach-band h3 { font-size: 28px; margin: 0; }
+.teach-band .principles { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 40px; }
+.teach-band > p { grid-column: 2; margin: 8px 0 0; }
+@media (max-width: 899px) { .teach-band { grid-template-columns: 1fr; } .teach-band > p { grid-column: 1; } .teach-band .principles { grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); } }
+.phil-intro { column-count: 2; column-gap: 56px; margin: 8px 0 0; }
+.phil-intro p { margin: 0 0 22px; color: var(--fg-2); font-size: 19px; line-height: 1.65; break-inside: avoid; }
+@media (max-width: 899px) { .phil-intro { column-count: 1; } }
+.acc-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 12px 24px; margin-top: 40px; }
+.acc-head .h2 { margin: 0; }
+.acc-all { font: inherit; font-weight: 600; font-size: 16px; color: var(--fg); background: transparent; border: 2px solid var(--fg); border-radius: 4px; padding: 10px 16px; min-height: 44px; cursor: pointer; }
+.acc-all:hover { background: var(--fg); color: var(--bg); }
+.acc-hint { color: var(--muted); font-size: 16px; margin: 10px 0 20px; }
+.acc-list { border-top: 1px solid var(--line); }
+details.acc { border-bottom: 1px solid var(--line); }
+details.acc summary { list-style: none; display: grid; grid-template-columns: 56px 1fr 32px; align-items: center; gap: 12px; padding: 22px 4px; cursor: pointer; }
+details.acc summary::-webkit-details-marker { display: none; }
+details.acc summary:hover .acc-title { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 5px; }
+.acc-num { font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 700; font-size: 18px; color: var(--muted); }
+.acc-title { font-family: 'Barlow Semi Condensed', sans-serif; font-weight: 700; font-size: clamp(21px, 2.4vw, 26px); line-height: 1.2; color: var(--fg); }
+.acc-icon { width: 28px; height: 28px; position: relative; justify-self: end; }
+.acc-icon::before, .acc-icon::after { content: ''; position: absolute; left: 6px; right: 6px; top: 13px; height: 3px; background: var(--accent); transition: transform 0.2s ease; }
+.acc-icon::after { transform: rotate(90deg); }
+details.acc[open] .acc-icon::after { transform: rotate(0deg); }
+details.acc[open] .acc-num { color: var(--fg); }
+.acc-body { padding: 0 40px 26px 72px; }
+.acc-body p { color: var(--fg-2); font-size: 18px; line-height: 1.65; max-width: 72ch; margin: 0; }
+@media (max-width: 600px) { details.acc summary { grid-template-columns: 40px 1fr 28px; } .acc-body { padding: 0 4px 22px 52px; } }
+@media (prefers-reduced-motion: reduce) { .acc-icon::before, .acc-icon::after { transition: none; } }
+.eq-split { margin-top: 8px; align-items: stretch; }
+.eq-text p { margin: 0 0 20px; color: var(--fg-2); font-size: 19px; line-height: 1.65; max-width: 64ch; }
+@media (min-width: 900px) { .eq-split > .narrow { flex: 0 0 380px; } }
+.eq-fig { margin: 0; }
+.eq-photo { aspect-ratio: 4 / 5; }
+.eq-fig figcaption { margin-top: 10px; font-size: 15px; color: var(--muted); }
+.grad-study { margin-top: 44px; padding-top: 28px; border-top: 1px solid var(--line); max-width: 75ch; }
+.grad-study h3 { font-size: 24px; margin: 0 0 12px; }
+.grad-study p { font-size: 17px; line-height: 1.65; color: var(--fg-2); margin: 0 0 14px; }
+footer .wrap { align-items: center; }
+.foot-toggle { border-color: var(--line); }
+.foot-toggle button { color: var(--fg); min-height: 36px; }
+.foot-toggle button + button { border-left-color: var(--line); }
+.pd-acc .acc-head { margin-top: 0; }\n.pd-acc .acc-list { border-top-color: var(--line); }\n.vid video { display: block; width: 100%; height: 100%; object-fit: contain; background: #000; }\n/* Hero */
+.hero { padding-block: 80px 0; display: flex; flex-wrap: wrap; align-items: center; gap: 40px 56px; }
+.hero-text { flex: 1 1 100%; min-width: 0; }
+.hero h1 { font-size: clamp(44px, 6vw, 66px); line-height: 1.02; letter-spacing: -0.01em; margin-bottom: 24px; }
+.hero .lede { font-size: 20px; margin-bottom: 32px; }
+.hero-photo { flex: 1 1 360px; max-width: 460px; min-width: 0; align-self: flex-end; margin-inline: auto; }
+@media (min-width: 1060px) {
+  .hero { flex-wrap: nowrap; padding-top: 56px; }
+  .hero-text { flex: 1 1 auto; padding-bottom: 32px; }
+  .hero h1 { font-size: clamp(44px, 4.4vw, 56px); }
+  .hero-photo { order: -1; flex: 0 0 44%; max-width: none; margin-inline: 0; }
+  /* Let the portrait grow into the left page margin (up to 64px) so the head rises toward the headline; the arm fade lands in the margin */
+  .hero-shot { --bleed: min(64px, max(0px, (100vw - 1116px) / 2)); margin-left: calc(-1 * var(--bleed)); width: calc(100% + var(--bleed)); }
+}
+.hero-shot img { display: block; width: 100%; height: auto; -webkit-mask-image: linear-gradient(to right, transparent 0, #000 7%); mask-image: linear-gradient(to right, transparent 0, #000 7%); }
+/* Theme-matched portraits: white-background photo in light mode, transparent cutout in dark mode */
+.hero-shot { position: relative; }
+.hero-shot .shot-dark { display: none; }
+:root[data-theme="dark"] .hero-shot .shot-light { display: none; }
+:root[data-theme="dark"] .hero-shot .shot-dark { display: block; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .hero-shot .shot-light { display: none; }
+  :root:not([data-theme="light"]) .hero-shot .shot-dark { display: block; }
+}
+/* Subtle wash in the page background colour; raise or lower the opacity to taste */
+.hero-shot::after { content: ""; position: absolute; inset: 0; background: var(--bg); opacity: var(--shot-wash, 0.2); pointer-events: none; }
+:root[data-theme="dark"] .hero-shot { --shot-wash: 0.4; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .hero-shot { --shot-wash: 0.4; } }
+
+/* Credentials */
+.creds { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.creds .wrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+.cred { padding: 24px 24px 24px 0; }
+.cred b { display: block; font-weight: 600; font-size: 17px; }
+.cred span { font-size: 15px; color: var(--muted); }
+
+/* Projects */
+.proj-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px 40px; margin-bottom: 36px; }
+.tabs { display: flex; flex-wrap: wrap; gap: 2px 24px; }
+.tab {
+  font: 600 17px var(--body); min-height: 44px; padding: 0 2px; background: transparent; border: 0;
+  border-bottom: 3px solid transparent; color: var(--muted); cursor: pointer;
+}
+.tab:hover { color: var(--fg); }
+.tab[aria-pressed="true"] { color: var(--fg); border-bottom-color: var(--accent); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); gap: 44px 32px; }
+.card { text-decoration: none; color: var(--fg); display: flex; flex-direction: column; gap: 14px; }
+.card h3 { font-size: 24px; margin-bottom: 4px; }
+.card:hover h3 { text-decoration: underline; text-decoration-color: var(--accent); text-decoration-thickness: 2px; text-underline-offset: 4px; }
+.card .ph { transition: transform 0.25s ease; }
+.card:hover .ph { transform: translateY(-3px); }
+@media (prefers-reduced-motion: reduce) { .card .ph { transition: none; } .card:hover .ph { transform: none; } }
+.tag { display: inline-block; font-size: 13px; font-weight: 600; color: var(--muted); border: 1px solid var(--line); border-radius: 3px; padding: 0 8px; margin-top: 8px; }
+
+/* About */
+.split { display: flex; flex-wrap: wrap; gap: 48px 56px; align-items: flex-start; }
+.split > .narrow { flex: 1 1 320px; min-width: 0; }
+.split > .wide { flex: 999 1 520px; min-width: 0; }
+.stack { display: flex; flex-direction: column; gap: 18px; }
+.principles { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 12px 32px; font-size: 17px; }
+.principles li { display: flex; gap: 12px; align-items: baseline; }
+.sq { width: 8px; height: 8px; background: var(--accent); flex: 0 0 8px; transform: translateY(-2px); }
+
+/* Timeline */
+.band { background: var(--surface); }
+.band .wrap { padding-block: 88px; }
+.row { display: flex; flex-wrap: wrap; gap: 4px 32px; padding: 22px 0; border-top: 1px solid var(--line); }
+.row:last-of-type { border-bottom: 1px solid var(--line); }
+.row .when { flex: 0 0 200px; font-weight: 600; color: var(--muted); font-size: 16px; }
+.row .what { flex: 1 1 300px; min-width: 0; }
+.row h3 { font-size: 22px; margin-bottom: 4px; }
+.row p { font-size: 17px; color: var(--fg-2); }
+blockquote { margin: 0; font-size: 22px; line-height: 1.5; color: var(--fg-2); font-style: italic; }
+figure { margin: 40px 0 0; }
+figcaption { margin-top: 10px; font-size: 16px; color: var(--muted); }
+
+/* Adult learning */
+.cols3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 44px 32px; }
+.item { display: flex; flex-direction: column; gap: 12px; }
+.item .org { font-size: 15px; font-weight: 600; color: var(--muted); }
+.item h3 { font-size: 24px; }
+.item p { font-size: 17px; color: var(--fg-2); }
+.note { margin-top: 44px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 17px; color: var(--fg-2); max-width: 75ch; }
+
+/* Contact */
+.contact { padding-block: 88px; }
+.contact-inner { border-top: 5px solid var(--fg); padding-top: 40px; display: flex; flex-wrap: wrap; gap: 32px 64px; }
+.email-line { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-top: 22px; }
+.email { font-family: var(--display); font-weight: 700; font-size: clamp(26px, 4vw, 34px); user-select: all; overflow-wrap: anywhere; }
+.copy-btn { min-height: 44px; padding: 0 16px; border-radius: 4px; border: 1.5px solid var(--fg); background: transparent; color: var(--fg); font: 600 15px var(--body); cursor: pointer; }
+.links { display: flex; flex-direction: column; gap: 2px; }
+.links a, .links span { font-weight: 600; min-height: 44px; display: inline-flex; align-items: center; }
+.links span { color: var(--muted); font-weight: 500; }
+
+footer { border-top: 1px solid var(--line); }
+footer .wrap { padding-block: 26px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-size: 15px; color: var(--muted); }
+
+/* Project detail */
+.back { font-weight: 600; font-size: 16px; min-height: 44px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; }
+.back svg, .next svg { width: 16px; height: 16px; }
+.pd-head { padding-block: 48px 0; }
+.pd-head h1 { font-size: clamp(40px, 5.5vw, 60px); line-height: 1.04; margin: 18px 0 16px; max-width: 18ch; }
+.pd-head .lede { font-size: 20px; margin-bottom: 36px; }
+.meta { margin: 0 0 44px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 16px 32px; padding: 22px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.meta dt { font-size: 15px; font-weight: 600; color: var(--muted); }
+.meta dd { margin: 2px 0 0; font-size: 18px; }
+.steps { display: flex; flex-direction: column; gap: 60px; margin-top: 44px; }
+.step { display: flex; flex-wrap: wrap; gap: 24px 56px; align-items: center; }
+.step .txt { flex: 1 1 320px; min-width: 0; }
+.step .img { flex: 999 1 480px; min-width: 0; }
+.step .num { font-family: var(--display); font-weight: 700; font-size: 18px; color: var(--step); margin-bottom: 6px; }
+.step h3 { font-size: 28px; margin-bottom: 10px; }
+.step p { color: var(--fg-2); }
+.trio { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); gap: 36px 48px; }
+.trio h2 { font-size: 26px; margin-bottom: 10px; }
+.trio p { font-size: 17px; color: var(--muted); }
+.res { border-top: 1px solid var(--line); }
+.res li { list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.res ul { margin: 0; padding: 0; }
+.res b { display: block; font-weight: 600; font-size: 18px; }
+.res small { display: block; font-size: 15px; color: var(--muted); }
+.res .pending { flex: 0 0 auto; font-size: 13px; font-weight: 600; color: var(--muted); border: 1px dashed var(--muted); border-radius: 3px; padding: 2px 8px; }
+.pd-nav { border-top: 5px solid var(--fg); padding-top: 24px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; }
+.next { font-weight: 600; min-height: 44px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; text-align: right; }
+
+/* Philosophy */
+.phil-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr)); gap: 0 48px; margin-top: 40px; border-top: 1px solid var(--line); }
+.phil-list article { padding: 24px 0; border-bottom: 1px solid var(--line); }
+.phil-list h3 { font-size: 24px; margin-bottom: 8px; display: flex; gap: 12px; align-items: baseline; }
+.phil-list p { color: var(--fg-2); font-size: 17px; }
+.placeholder-box { border: 1.5px dashed var(--muted); border-radius: 4px; padding: 20px 24px; color: var(--muted); font-size: 17px; }
+
+.view { animation: fade 0.25s ease; }
+@keyframes fade { from { opacity: 0.4; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .view { animation: none; } }
+</style>
+</head>
+<body>
+
+<header class="site-header" id="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Jordan Coop, home">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name">Jordan Coop</span>
+    </a>
+    <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+      Menu
+    </button>
+    <nav class="nav" id="site-nav" aria-label="Main">
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#teacher-education">Teacher education</a>
+      <a href="#adult-learning">Adult learning</a>
+      <a href="#contact">Contact</a>
+      <a class="nav-cv" href="files/Jordan_Coop_Resume.pdf" download="Jordan_Coop_Resume.pdf" data-pdf>CV</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HOME -->
+<main id="view-home" class="view">
+  <section id="top" class="wrap hero" aria-labelledby="hero-title">
+    <div class="hero-text">
+      <h1 id="hero-title">Technological Education teacher and adult educator.</h1>
+      <p class="lede">I am an Ontario Certified Teacher in Communications Technology and Technological Design, with an M.Ed. in Adult Education and fourteen years of experience designing online and blended learning. This portfolio brings together my classroom projects, my work developing educators, and my practice in educational technology.</p>
+      <div class="btn-row">
+        <a class="btn btn-accent" href="#projects">See classroom projects</a>
+        <a class="btn btn-outline" href="files/Jordan_Coop_Resume.pdf" download="Jordan_Coop_Resume.pdf" data-pdf>Download my CV</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+            <div class="hero-shot">
+        <img class="shot-light" src="images/headshot-light.webp" width="1000" height="916" alt="Portrait of Jordan Coop" decoding="async">
+        <img class="shot-dark" src="images/headshot-dark.webp" width="1000" height="916" alt="Portrait of Jordan Coop" decoding="async">
+      </div>
+    </div>
+  </section>
+
+  <section class="creds" aria-label="Credentials">
+    <div class="wrap">
+      <div class="cred"><b>Ontario Certified Teacher</b><span>Communications Technology and Technological Design, Grades 9–12</span></div>
+      <div class="cred"><b>M.Ed., Adult Education</b><span>University of Toronto</span></div>
+      <div class="cred"><b>B.Ed., Technological Education</b><span>University of Windsor</span></div>
+      <div class="cred"><b>Currently</b><span>Education Specialist, CAMH</span></div>
+    </div>
+  </section>
+
+  <section id="projects" class="wrap section" aria-labelledby="projects-title">
+    <div class="proj-head">
+      <div>
+        <div class="kicker-bar" aria-hidden="true"></div>
+        <h2 id="projects-title" class="h2">Classroom projects</h2>
+        <p class="lede" style="margin-top: 10px">Project-based units from Ontario secondary schools and an international IB school.</p>
+      </div>
+      <div class="tabs" role="group" aria-label="Filter projects" id="tabs"></div>
+    </div>
+    <div class="grid" id="project-grid" aria-live="polite"></div>
+  </section>
+
+  <section id="about" class="wrap section" aria-labelledby="about-title">
+    <div style="padding-top: 40px">
+      <div class="kicker-bar" aria-hidden="true"></div>
+      <h2 id="about-title" class="h2">About me</h2>
+    </div>
+    <div class="split about-split" style="padding-top: 28px">
+      <div class="narrow">
+        <figure class="shot about-photo"><img src="images/teaching-desk.jpeg" width="824" height="792" alt="Jordan at his classroom desk at Catholic Central, gesturing as he explains a concept" loading="lazy" decoding="async"></figure>
+      </div>
+      <div class="wide stack">
+        <p class="lede">After more than a decade as a multimedia developer and instructional designer in universities and hospitals, I had a sudden realization during the pandemic: the parts of my work I valued most were the moments when I could share what I knew with other people.</p><p class="lede">So, I went back to school to become a Technological Education teacher.</p><p class="lede">Since then, I have taught Technological Design, Architecture, Robotics, Communications Technology, STEM, Technology and the Skilled Trades, Civics and Careers, and I spent a year teaching MYP Design to Grades 6 to 10 at an international IB school in Madrid. Outside the classroom, I have served as design lead for a FIRST Robotics team, coached a student to fourth place provincially at Skills Ontario, and moderated clubs that included yearbook, photography, chess, band and various sports.</p>
+        <p class="lede">I see Technological Education as a discipline in which students learn to think by doing. My role in this context is to act as a guide on the side: to design meaningful problems, build the relationships that allow students to take risks, and help them reflect on what their process reveals about their learning. This is why I begin each course by asking students <em>what they want to learn</em> and by writing a classroom charter with them, and I share my own teaching philosophy with them so that they understand the reasons behind my practice. From an adult learning perspective, the same principles apply when working with teacher candidates.</p>
+
+      </div>
+    </div>
+
+    <div class="teach-band">
+        <h3>How I teach</h3>
+        <ul class="principles">
+          <li><span class="sq" aria-hidden="true"></span>Create a classroom where it is safe to fail</li>
+          <li><span class="sq" aria-hidden="true"></span>Use reflection as part of the design process</li>
+          <li><span class="sq" aria-hidden="true"></span>Implement Universal Design for Learning</li>
+          <li><span class="sq" aria-hidden="true"></span>Design authentic, criteria-based assessment</li>
+          <li><span class="sq" aria-hidden="true"></span>Leverage project-based learning for people, community and planet</li>
+          <li><span class="sq" aria-hidden="true"></span>Foster critical engagement with technology and AI</li>
+        </ul>
+        <p><a href="#philosophy" style="font-weight: 600">Read my teaching philosophy</a></p>
+    </div>
+  </section>
+
+
+  <section id="voices" class="wrap section" aria-labelledby="voices-title">
+    <div class="kicker-bar" aria-hidden="true"></div>
+    <h2 id="voices-title" class="h2">In others’ words</h2>
+    <p class="lede" style="max-width:70ch">The comments below are taken from my principal’s summative appraisal under Ontario’s New Teacher Induction Program and from my students’ weekly reflection journals. Students’ words are quoted as written, but they remain anonymous.</p>
+    <h3>From my principal</h3>
+    <div class="voices">
+      <figure><blockquote>“Jordan’s use of technology, his ability to balance keeping all learners focused and on task while making it ‘fun’ and his ability to break concepts down to the student’s level demonstrates his versatile instructional approaches.”</blockquote><figcaption>Principal, Holy Names Catholic High School · NTIP summative appraisal, 2023</figcaption></figure>
+      <figure><blockquote>“Jordan encourages feedback, risk taking and questioning by establishing a non-threatening learning environment.”</blockquote><figcaption>Principal, Holy Names Catholic High School · NTIP summative appraisal, 2023</figcaption></figure>
+      <figure><blockquote>“He maintains positive relationships with his students, while at the same time upholding high expectations for all.”</blockquote><figcaption>Principal, Holy Names Catholic High School · NTIP summative appraisal, 2023</figcaption></figure>
+    </div>
+    <h3>From my students</h3>
+    <div class="voices">
+      <figure><blockquote>“After I asked sir to assist me, I figured out the pattern and then following lessons went smoothly. I was very proud of myself to be honest…”</blockquote><figcaption>Grade 11–12 Robotics Manufacturing student</figcaption></figure>
+      <figure><blockquote>“One of the challenges was getting the computer to start and keeping up but sir was patient and showing us all the steps we need to finish the project.”</blockquote><figcaption>Grade 11–12 Architectural Design student</figcaption></figure>
+      <figure><blockquote>“I enjoyed how you made us watch videos because I’m more of a visual learner and I find it better to watch videos.”</blockquote><figcaption>Grade 9 Exploring Technologies student</figcaption></figure>
+      <figure><blockquote>“Honestly I don’t have any question but I want to say that I really appreciate your help.”</blockquote><figcaption>Grade 11–12 Robotics Manufacturing student</figcaption></figure>
+      <figure><blockquote>“Sir kindly went around giving good advice…”</blockquote><figcaption>Grade 11–12 Architectural Design student</figcaption></figure>
+      <figure><blockquote>“This was a great class. Thank you sir.”</blockquote><figcaption>Grade 11–12 Architectural Design student, final journal entry</figcaption></figure>
+    </div>
+  </section>
+
+  <section id="teacher-education" class="band" aria-labelledby="te-title" style="margin-top: 64px">
+    <div class="wrap split">
+      <div class="narrow stack">
+        <div>
+          <div class="kicker-bar" aria-hidden="true"></div>
+          <h2 id="te-title" class="h2">Teacher education and mentoring</h2>
+        </div>
+        <p class="lede">In my opinion, preparing new Technological Education teachers requires both credible classroom experience and a deliberate understanding of how adults learn. I approach feedback as a developmental process grounded in the Ontario College of Teachers’ Standards of Practice and Ethical Standards.</p>
+      </div>
+      <div class="wide">
+        <div class="row"><div class="when">Oct–Dec 2025</div><div class="what"><h3>Associate teacher</h3><p>Hosted, supervised, mentored and evaluated a Communications Technology teacher candidate during a formal practicum placement.</p></div></div>
+        <div class="row"><div class="when">Western University</div><div class="what"><h3>Faculty development</h3><p>Trained more than 100 faculty members to integrate educational technologies into their teaching, in person and through live virtual sessions.</p></div></div>
+        <div class="row"><div class="when">Windsor-Essex CDSB</div><div class="what"><h3>Professional development for colleagues</h3><p>Delivered informal professional development sessions to 25–30 teaching colleagues on educational technology and eLearning strategies.</p></div></div>
+        <div class="row"><div class="when">Unity Health Toronto</div><div class="what"><h3>Team leadership</h3><p>Provided day-to-day direction and mentorship to four members of a learning and development team.</p></div></div>
+        <figure>
+          <blockquote>“Jordan’s experience outside of the classroom has allowed him to intuitively provide accurate and up to date information from industry. He is able to provide students with real life examples which allows the curriculum to come alive.”</blockquote>
+          <figcaption>Principal, Holy Names Catholic High School · NTIP summative appraisal, 2023</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="adult-learning" class="wrap section" aria-labelledby="al-title">
+    <div class="kicker-bar" aria-hidden="true"></div>
+    <h2 id="al-title" class="h2">Adult learning and educational technology</h2>
+    <p class="lede" style="margin: 14px 0 44px">In addition to my teaching experience, I have fourteen years of instructional design, LMS leadership and live virtual facilitation. This includes being a lead designer for hundreds of online modules for health professionals and administering learning systems supporting more than 10,000 employees.</p>
+    <div class="cols3">
+      <article class="item">
+        <div class="logo-tile r1610"><img src="images/logo-988.png" alt="9-8-8 Suicide Crisis Helpline logo"></div>
+        <div class="org">Centre for Addiction and Mental Health · 2026–present</div>
+        <h3>9-8-8 responder education</h3>
+        <p>I lead instructional design for a seven-module national learning program for 9-8-8 Suicide Crisis Helpline responders, combining asynchronous eLearning with synchronous practice and simulation, developed with a 20-member advisory group that includes people with lived experience.</p>
+      </article>
+      <article class="item">
+        <div class="logo-tile r1610"><img src="images/logo-wch.png" alt="Women’s College Hospital logo"></div>
+        <div class="org">McMaster School of Nursing · Women’s College Hospital</div>
+        <h3>Scenario-based professional learning</h3>
+        <p>I designed more than 30 interactive online modules for healthcare professionals, translating evidence into case-driven learning in Articulate Storyline and Rise and applying AODA and WCAG accessibility standards.</p>
+      </article>
+      <article class="item">
+        <div class="logo-tile r1610"><img src="images/logo-unity.png" alt="Unity Health Toronto logo"></div>
+        <div class="org">Unity Health Toronto · Western University</div>
+        <h3>Learning systems and faculty support</h3>
+        <p>I administered Moodle and led a multi-year LMS migration at Unity Health Toronto, and supported more than 7,500 students and approximately 1,200 courses through an LMS transition at Western University.</p>
+      </article>
+    </div>
+    <div class="voices al-voices">
+      <figure><blockquote>“He was able to help content experts translate their material into an exciting and interactive educational experience. His thoughtfulness and critical thinking lens has been a true asset to the organization.”</blockquote><figcaption>Director, Leadership and Organizational Development, Unity Health Toronto · Reference letter, 2021</figcaption></figure>
+      <figure><blockquote>“Jordan’s collaborative approach to work and his respectful and inclusive leadership style would make him a welcome addition to any team.”</blockquote><figcaption>Director, Leadership and Organizational Development, Unity Health Toronto · Reference letter, 2021</figcaption></figure>
+    </div>
+    <div class="grad-study">
+      <h3>Graduate study</h3>
+      <p>My M.Ed. in Adult Education at OISE gave me the theoretical foundation for how I work with adult learners, including teacher candidates. Across courses such as Introduction to Adult Education, Adult Learning Theory, Introduction to Professions, Work and Learning, Creating a Learning Organization, and Indigenous Knowledge, I examined how adults learn, how professions shape the identities of their members, and how learning communities form, both in person and online.</p>
+      <p>Several threads from that work continue to inform my approach to professional education. In one paper, I examined how mandatory professional learning helps define a profession’s ethical obligations, a question I find directly relevant to the way AQ courses and the OCT Standards of Practice shape what it means to be a teacher. In another, I argued that learner-centred approaches such as Knowles’ andragogy can serve the goals of critical educators like Freire rather than work against them. I also designed and facilitated a seminar for fellow graduate students, evaluated it using Kirkpatrick’s model, and, in a reflective essay on team learning, argued that formative assessment works best when it is treated as a learning activity in its own right rather than an audit of what students already know.</p>
+    </div>
+  </section>
+
+  <section id="contact" class="wrap contact" aria-labelledby="contact-title">
+    <div class="contact-inner">
+      <div style="flex: 999 1 480px; min-width: 0">
+        <h2 id="contact-title" class="h2" style="margin-bottom: 14px">Get in touch</h2>
+        <p class="lede">Email is the best way to reach me. My Ontario College of Teachers registration can be verified on the public register.</p>
+        <div class="email-line">
+          <span class="email" id="email" data-u="nempoocj" data-d="moc.liamg">jcoopmen [at] gmail [dot] com</span>
+          <button class="copy-btn" id="copy-email" type="button">Copy email</button>
+        </div>
+      </div>
+      <div class="links" style="flex: 1 1 260px; min-width: 0">
+        <a href="files/Jordan_Coop_Resume.pdf" download="Jordan_Coop_Resume.pdf" data-pdf>CV (PDF)</a>
+        <a href="https://www.linkedin.com/in/jordancoop/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://apps.oct.ca/FindATeacher/memberdetail?id=727521" target="_blank" rel="noopener">OCT public register</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- PROJECT DETAIL -->
+<main id="view-project" class="view" hidden></main>
+
+<!-- PHILOSOPHY -->
+<main id="view-philosophy" class="view" hidden>
+  <div class="wrap pd-head">
+    <a class="back" href="#about"><svg aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L5 8l5 5"></path></svg>Back to About</a>
+    <h1>Teaching philosophy</h1>
+    <figure class="shot phil-photo"><picture><source media="(max-width: 700px)" srcset="images/about-class-sm.jpeg"><img src="images/about-class.jpeg" width="1800" height="801" alt="Jordan kneeling in the middle of a smiling class of secondary students in a classroom, with students’ faces blurred" loading="lazy" decoding="async"></picture></figure>
+    <div class="phil-intro">
+      <p>My teaching philosophy is, and likely always will be, a work in progress. This is because it draws on my academic, professional and personal experience to date and constantly changes as a result of this experience.</p>
+      <p>Broadly speaking, however, I see Technological Education as a discipline in which students learn to think by doing. I believe that education can advance social justice, equity and democracy, and that students learn most deeply when they reflect critically on hands-on experience.</p>
+      <p>In my view, treating learning as the acquisition of knowledge in the mind does little to explain how we learn hands-on skills, which is why I try to make theory concrete through project-based learning. In this context, I view my role as a teacher as a guide on the side, rather than a sage on the stage: to design meaningful problems, build the relationships that allow students to take risks, and help them reflect on what their process reveals about their own learning.</p>
+      <p>In my experience, positive relationships tend to matter more than the mastery of any single curriculum expectation or technology, because they are the foundation on which learning is built. I therefore treat the classroom as a learning community in which knowledge is co-constructed. I build that community from the first day, set expectations together with students, and rely on consistent routines rather than on rewards, threats, or demerits.</p>
+      <p>From an adult learning perspective, I believe the same principles apply to teacher candidates, who learn most when they connect new theory to the realities of their own classrooms and placements. The principles below guide my work with secondary students and adult learners alike, and each is paired with an example from my own teaching.</p>
+    </div>
+  </div>
+  <div class="wrap" style="padding-block: 24px 88px">
+    <div class="acc-head">
+      <h2 class="h2">Principles in practice</h2>
+      <button type="button" class="acc-all" aria-pressed="false">Expand all</button>
+    </div>
+    <p class="acc-hint">Select a principle to read how it shapes my teaching, with an example from my own classroom.</p>
+    <div class="acc-list">
+        <details class="acc">
+          <summary><span class="acc-num">01</span><span class="acc-title">Student voice matters</span><span class="acc-icon" aria-hidden="true"></span></summary>
+          <div class="acc-body"><p>My courses always begin with a learning expectations activity and a democratic vote on a classroom charter. I also invite students to ask me questions about myself. In response, I share a short presentation on who I am, which includes my teaching and learning philosophy, so that students understand why I teach the way I do. I find students tend to appreciate the transparency, and tend to be far more likely to own expectations that they helped to write.</p></div>
+        </details>
+        <details class="acc">
+          <summary><span class="acc-num">02</span><span class="acc-title">Every student can succeed</span><span class="acc-icon" aria-hidden="true"></span></summary>
+          <div class="acc-body"><p>In my experience, confidence is a prerequisite for motivation. Many students arrive in Technological Education having been told, directly or indirectly, that they are not good at school. This is why in teacher’s college, I designed a classroom poster, “Mr. Coop’s Promise,” that tells students that anyone can earn an A+ in my class, and I try to make that promise credible by recognizing multiple intelligences, differentiating instruction and offering as much choice as possible in topics, formats, and classroom rules.</p></div>
+        </details>
+        <details class="acc">
+          <summary><span class="acc-num">03</span><span class="acc-title">Classrooms need to be safe places to fail</span><span class="acc-icon" aria-hidden="true"></span></summary>
+          <div class="acc-body"><p>I treat iteration, testing, and redesign as evidence of learning, and I view “failure” as an opportunity rather than a personal shortcoming. In the Mechanical Design Challenge, for example, my brief told students that their designs could change during CAD and testing, and after competition day we reflected as a class on what each group had learned. I have also designed a Grade 11 lesson in which students analyse famous product failures, build paper towers against the clock, and then reflect on the mistakes they made and how they overcame them.</p></div>
+        </details>
+        <details class="acc">
+          <summary><span class="acc-num">04</span><span class="acc-title">Reflection is indispensable</span><span class="acc-icon" aria-hidden="true"></span></summary>
+          <div class="acc-body"><p>Students might groan at writing reflections, but design logs, process journals, and critique help them articulate the decisions behind their work. My Technological Design and Architectural Design students kept weekly reflection journals, and my MYP students recorded every change to their plan in a production log. These journals not only give me ongoing feedback on learner progress, but also serve as a diagnostic tool for my own teaching, which I treat as a design process in its own right: I seek feedback from colleagues, rely on a network of collegial support, and make every effort to continue my professional learning, most recently through additional qualifications in Technological Design, an MYP Design teacher training course and my work as an associate teacher.</p></div>
+        </details>
+        <details class="acc">
+          <summary><span class="acc-num">05</span><span class="acc-title">Learning should be universally designed</span><span class="acc-icon" aria-hidden="true"></span></summary>
+          <div class="acc-body"><p>I like to give students the opportunity to choose between tools such as Revit and SketchUp, work from structured templates and exemplars, and track their own progress with checklists. Just as importantly, I try to give students more than one way to show me what they know. I offer options in how students present their work rather than requiring a single format, and in my MYP Design classes, students could describe their finished monument in writing or in an audio recording. This matters because, as a teacher, seeing a student’s learning process is far more important to me than seeing their technological product. A polished model or video can hide a great deal, while a student explaining why they changed their design, in whatever format suits them best, shows me exactly what they have learned and where they still need support.</p></div>
+        </details>
+        <details class="acc">
+          <summary><span class="acc-num">06</span><span class="acc-title">Assessment ought to be authentic</span><span class="acc-icon" aria-hidden="true"></span></summary>
+          <div class="acc-body"><p>Where possible, I always try to ensure that assessment tasks resemble the work of designers, producers, and builders in industry, and I like to share those criteria from the outset. In my classes, for example, students have worked as architects proposing a redesign of their school courtyard and as game designers responding to a client. I prioritize assessment for and as learning, offer multiple opportunities to submit formative work to reduce anxiety, and treat assessment as a dialogue with students about how to improve.</p></div>
+        </details>
+        <details class="acc">
+          <summary><span class="acc-num">07</span><span class="acc-title">Design can be leveraged for people, community and planet</span><span class="acc-icon" aria-hidden="true"></span></summary>
+          <div class="acc-body"><p>I try my best to create projects that connect technical skill to social justice, community needs, and sustainability. Through this, I try to highlight the idea that technology is at once the source of, and a potential solution to, some of the world’s most pressing challenges. My students have proposed community housing projects for Windsor neighbourhoods using census data, designed textile products that promote the UN Sustainable Development Goals, and built games that raise awareness of social justice issues facing children.</p></div>
+        </details>
+        <details class="acc">
+          <summary><span class="acc-num">08</span><span class="acc-title">Indigenous knowledge and perspectives are invaluable</span><span class="acc-icon" aria-hidden="true"></span></summary>
+          <div class="acc-body"><p>In my opinion, a broad-based view of Technological Education must make room for Indigenous knowledge in every course. After all, storytelling is itself a communication technology. In teacher’s college, I designed a Communications Technology lesson that connected Indigenous oral storytelling to contemporary journalism. When I researched the history of residential architecture in Canada, I also noticed that most sources began with colonial influences, as though nothing had been built here before, so I now look beyond that default starting point and try to learn directly from Indigenous journalists, producers, and communities.</p></div>
+        </details>
+        <details class="acc">
+          <summary><span class="acc-num">09</span><span class="acc-title">Engagement with technology and AI must be critical</span><span class="acc-icon" aria-hidden="true"></span></summary>
+          <div class="acc-body"><p>Sound pedagogy should always drive the use of technology, rather than the reverse. Tools, including AI, need to be evaluated according to their purpose, content, and context. In my Short Film Project, for example, students were allowed to use generative AI for a first draft of their script but were expected to revise and reflect on it critically, and my robotics students debated the ethics of robotics and the future of work.</p></div>
+        </details>
+    </div>
+    <section class="equity" aria-labelledby="equity-title">
+      <div class="kicker-bar" aria-hidden="true"></div>
+      <h2 id="equity-title" class="h2">Equity in Technological Education</h2>
+      <div class="split eq-split">
+        <div class="wide eq-text">
+          <p>Technological Education has the potential to be one of the most equitable places in a school, but only when it is designed to be. Much of my recent teaching took place at a Windsor secondary school where many students were newcomers to Canada and were still learning English. In a design shop or a media lab, these students could often show what they knew through a sketch, a prototype, or a sequence of shots long before they could explain it in an essay. Through this experience, I came to see my responsibility as keeping language from becoming a barrier to the demonstration of knowledge, without lowering the expectations of the work itself.</p>
+          <p>In practice, as a teacher this means I try to demonstrate before explaining, pair technical vocabulary with images and translations, allow students to research and plan in their first language, and accept models, drawings and media as evidence of learning alongside writing. It also means recognizing that students arrive with very different levels of access to technology and very different prior experience with tools. In response, I have planned scaffolds, shared equipment, and supervised lab time so that every student can participate fully and safely.</p>
+          <p>Equity in Technological Education also concerns who sees a future in the field. I want students who are newcomers, multilingual, or new to technology to see design, media and the skilled trades as pathways that are open to them. From an adult learning perspective, I want the teacher candidates I work with to design their own programs with the same intention.</p>
+        </div>
+        <div class="narrow">
+          <figure class="eq-fig"><div class="shot eq-photo"><img src="images/eq-mentoring.jpg" width="1200" height="1500" alt="A senior student in safety glasses guiding a younger student through drilling a piece of wood clamped to a workbench in the construction shop" loading="lazy" decoding="async"></div><figcaption>A senior student coaching a visiting Grade 8 student on the drill during Grade 8 Day.</figcaption></figure>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+  (function () {
+    var root = document.getElementById('view-philosophy');
+    if (!root) return;
+    var btn = root.querySelector('.acc-all');
+    var items = root.querySelectorAll('details.acc');
+    function sync() {
+      var allOpen = Array.prototype.every.call(items, function (d) { return d.open; });
+      btn.textContent = allOpen ? 'Collapse all' : 'Expand all';
+      btn.setAttribute('aria-pressed', allOpen ? 'true' : 'false');
+    }
+    btn.addEventListener('click', function () {
+      var open = btn.getAttribute('aria-pressed') !== 'true';
+      items.forEach(function (d) { d.open = open; });
+      sync();
+    });
+    items.forEach(function (d) { d.addEventListener('toggle', sync); });
+  })();
+  </script>
+</main>
+<footer>
+  <div class="wrap">
+    <span>© 2026 Jordan Coop · Toronto, Ontario</span>
+    <span>Student work is shared with permission.</span>
+    <div class="theme-toggle foot-toggle" role="group" aria-label="Colour theme">
+      <button type="button" data-theme-set="light" aria-pressed="false">Light</button>
+      <button type="button" data-theme-set="dark" aria-pressed="false">Dark</button>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var IMG = '<svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="1"></rect><circle cx="9" cy="10" r="2"></circle><path d="M21 17l-5-5-8 8"></path></svg>';
+  var HAS_FILES = true;
+  var IMGS = {"bm-3d-1":"images/bm-3d-1.jpg","bm-3d-2":"images/bm-3d-2.jpg","bm-3d-3":"images/bm-3d-3.jpg","bm-3d-4":"images/bm-3d-4.jpg","bm-3d-5":"images/bm-3d-5.jpg","bm-3d-6":"images/bm-3d-6.jpg","bm-3d-7":"images/bm-3d-7.jpg","bm-3d-8":"images/bm-3d-8.jpg","bm-budget-1":"images/bm-budget-1.jpg","bm-budget-2":"images/bm-budget-2.jpg","bm-cad-1":"images/bm-cad-1.jpg","bm-cad-2":"images/bm-cad-2.jpg","bm-cad-3":"images/bm-cad-3.jpg","bm-cad-4":"images/bm-cad-4.jpg","bm-cad-5":"images/bm-cad-5.jpg","bm-cad-6":"images/bm-cad-6.jpg","bm-mood-1":"images/bm-mood-1.jpg","bm-mood-2":"images/bm-mood-2.jpg","bm-mood-3":"images/bm-mood-3.jpg","bm-mood-4":"images/bm-mood-4.jpg","bm-mood-5":"images/bm-mood-5.jpg","bm-mood-6":"images/bm-mood-6.jpg","bm-sk-1":"images/bm-sk-1.jpg","bm-sk-2":"images/bm-sk-2.jpg","bm-sk-4":"images/bm-sk-4.jpg","ca-res-1":"images/ca-res-1.jpg","ca-res-2":"images/ca-res-2.jpg","ca-res-3":"images/ca-res-3.jpg","ca-res-4":"images/ca-res-4.jpg","cad-model":"images/cad-model.jpg","cy-bd-1":"images/cy-bd-1.jpg","cy-bd-2":"images/cy-bd-2.jpg","cy-bd-3":"images/cy-bd-3.jpg","cy-bd-4":"images/cy-bd-4.jpg","cy-bd-5":"images/cy-bd-5.jpg","cy-m-1":"images/cy-m-1.jpg","cy-m-10":"images/cy-m-10.jpg","cy-m-11":"images/cy-m-11.jpg","cy-m-12":"images/cy-m-12.jpg","cy-m-2":"images/cy-m-2.jpg","cy-m-3":"images/cy-m-3.jpg","cy-m-4":"images/cy-m-4.jpg","cy-m-5":"images/cy-m-5.jpg","cy-m-6":"images/cy-m-6.jpg","cy-m-7":"images/cy-m-7.jpg","cy-m-8":"images/cy-m-8.jpg","cy-m-9":"images/cy-m-9.jpg","cy-site-1":"images/cy-site-1.jpg","cy-site-2":"images/cy-site-2.jpg","cy-site-3":"images/cy-site-3.jpg","cy-site-plan":"images/cy-site-plan.jpg","cy-sk-1":"images/cy-sk-1.jpg","cy-sk-2":"images/cy-sk-2.jpg","cy-sk-3":"images/cy-sk-3.jpg","cy-tut-1":"images/cy-tut-1.jpg","cy-tut-2":"images/cy-tut-2.jpg","cy-tut-3":"images/cy-tut-3.jpg","cy-tut-4":"images/cy-tut-4.jpg","cy-tut-5":"images/cy-tut-5.jpg","cy-tut-6":"images/cy-tut-6.jpg","cy-tut-7":"images/cy-tut-7.jpg","do-photo":"images/do-photo.jpg","do-photo-card":"images/do-photo-card.jpg","do-s1-problem":"images/do-s1-problem.jpg","do-s1-problem2":"images/do-s1-problem2.jpg","do-s1-rules":"images/do-s1-rules.jpg","do-s2-research":"images/do-s2-research.jpg","do-s2-research2":"images/do-s2-research2.jpg","do-s3-sketches":"images/do-s3-sketches.jpg","do-s3-sketches2":"images/do-s3-sketches2.jpg","do-s4-choice":"images/do-s4-choice.jpg","do-s4-choice2":"images/do-s4-choice2.jpg","do-s4-model":"images/do-s4-model.jpg","do-s4-model2":"images/do-s4-model2.jpg","do-s4-model3":"images/do-s4-model3.jpg","do-s5-print":"images/do-s5-print.jpg","do-s5-print2":"images/do-s5-print2.jpg","do-s5-print3":"images/do-s5-print3.jpg","do-s6-checklist":"images/do-s6-checklist.jpg","do-s6-reflect":"images/do-s6-reflect.jpg","do-s6-reflect2":"images/do-s6-reflect2.jpg","drafting":"images/drafting.jpg","ep-a-135131":"images/ep-a-135131.jpg","ep-a-135155":"images/ep-a-135155.jpg","ep-a-135213":"images/ep-a-135213.jpg","ep-a-135327":"images/ep-a-135327.jpg","ep-b-140321":"images/ep-b-140321.jpg","ep-b-140348":"images/ep-b-140348.jpg","ep-b-140426":"images/ep-b-140426.jpg","ep-b-140443":"images/ep-b-140443.jpg","ep-b-140535":"images/ep-b-140535.jpg","ep-c-141617":"images/ep-c-141617.jpg","ep-c-141638":"images/ep-c-141638.jpg","ep-c-141659":"images/ep-c-141659.jpg","ep-c-141901":"images/ep-c-141901.jpg","ep-c-142108":"images/ep-c-142108.jpg","ep-d-143222":"images/ep-d-143222.jpg","ep-d-143506":"images/ep-d-143506.jpg","ep-d-143545":"images/ep-d-143545.jpg","ep-d-143651":"images/ep-d-143651.jpg","gd-1-1":"images/gd-1-1.jpg","gd-1-2":"images/gd-1-2.jpg","gd-1-5":"images/gd-1-5.jpg","gd-1-7":"images/gd-1-7.jpg","gd-1-8":"images/gd-1-8.jpg","gd-1-9":"images/gd-1-9.jpg","gd-2-1":"images/gd-2-1.jpg","gd-2-11":"images/gd-2-11.jpg","gd-2-15":"images/gd-2-15.jpg","gd-2-16":"images/gd-2-16.jpg","gd-2-17":"images/gd-2-17.jpg","gd-2-3":"images/gd-2-3.jpg","gd-2-7":"images/gd-2-7.jpg","gd-2-8":"images/gd-2-8.jpg","gd-3-6":"images/gd-3-6.jpg","gd-4-1":"images/gd-4-1.jpg","gd-4-3":"images/gd-4-3.jpg","gd-4-5":"images/gd-4-5.jpg","gd-4-6":"images/gd-4-6.jpg","gd-4-7":"images/gd-4-7.jpg","gd-5-1":"images/gd-5-1.jpg","gd-5-2":"images/gd-5-2.jpg","gd-5-4":"images/gd-5-4.jpg","gd-5-5":"images/gd-5-5.jpg","hs-bm-3d1":"images/hs-bm-3d1.jpg","hs-bm-3d2":"images/hs-bm-3d2.jpg","hs-bm-3d3":"images/hs-bm-3d3.jpg","hs-bm-3d4":"images/hs-bm-3d4.jpg","hs-bm-mood":"images/hs-bm-mood.jpg","hs-bm-plan":"images/hs-bm-plan.jpg","hs-bm-sketch":"images/hs-bm-sketch.jpg","hs-ca-3d1":"images/hs-ca-3d1.jpg","hs-ca-3d2":"images/hs-ca-3d2.jpg","hs-ca-3d3":"images/hs-ca-3d3.jpg","hs-ca-3d4":"images/hs-ca-3d4.jpg","hs-ca-board1":"images/hs-ca-board1.jpg","hs-ca-board2":"images/hs-ca-board2.jpg","hs-ca-plan1":"images/hs-ca-plan1.jpg","hs-ca-plan2":"images/hs-ca-plan2.jpg","hs-ca-plan3":"images/hs-ca-plan3.jpg","hs-md-cad":"images/hs-md-cad.jpg","hs-md-materials":"images/hs-md-materials.jpg","hs-md-sketch":"images/hs-md-sketch.jpg","hs-rb-drawing":"images/hs-rb-drawing.jpg","hs-rb-sketch":"images/hs-rb-sketch.jpg","lg-connect":"images/lg-connect.jpg","lg-euph":"images/lg-euph.jpg","lg-hs-apply":"images/lg-hs-apply.jpg","lg-hs-sketch1":"images/lg-hs-sketch1.jpg","lg-hs-sketch2":"images/lg-hs-sketch2.jpg","lg-hs-sketch3":"images/lg-hs-sketch3.jpg","lg-it-1":"images/lg-it-1.jpg","lg-it-2":"images/lg-it-2.jpg","lg-it-3":"images/lg-it-3.jpg","lg-it-4":"images/lg-it-4.jpg","lg-mood-1":"images/lg-mood-1.jpg","lg-mood-2":"images/lg-mood-2.jpg","lg-mood-3":"images/lg-mood-3.jpg","lg-mood-4":"images/lg-mood-4.jpg","lg-mug":"images/lg-mug.jpg","lg-sketch":"images/lg-sketch.jpg","lg-tee-2":"images/lg-tee-2.jpg","lg-tees":"images/lg-tees.jpg","logo-a-card":"images/logo-a-card.jpg","logo-a-guidelines":"images/logo-a-guidelines.jpg","logo-a-primary":"images/logo-a-primary.jpg","logo-a-variations":"images/logo-a-variations.jpg","logo-b-primary":"images/logo-b-primary.jpg","logo-c-guidelines":"images/logo-c-guidelines.jpg","logo-hero":"images/logo-hero.jpg","md-cad-1":"images/md-cad-1.jpg","md-cad-2":"images/md-cad-2.jpg","md-cad-3":"images/md-cad-3.jpg","md-cad-6":"images/md-cad-6.jpg","md-cad-7":"images/md-cad-7.jpg","md-cad-iso":"images/md-cad-iso.jpg","md-cad-lever":"images/md-cad-lever.jpg","md-res-1":"images/md-res-1.jpg","md-res-3":"images/md-res-3.jpg","md-res-4":"images/md-res-4.jpg","md-sk-1":"images/md-sk-1.jpg","md-sk-3":"images/md-sk-3.jpg","mech-crane":"images/mech-crane.jpg","mech-hacksaw":"images/mech-hacksaw.jpg","mech-hs-build1":"images/mech-hs-build1.jpg","mech-hs-build2":"images/mech-hs-build2.jpg","mech-hs-build4":"images/mech-hs-build4.jpg","mech-machines":"images/mech-machines.jpg","mech-measure":"images/mech-measure.jpg","mech-measure-2":"images/mech-measure-2.jpg","mech-shop":"images/mech-shop.jpg","mech-video-poster":"images/mech-video-poster.jpg","mo-1-1":"images/mo-1-1.jpg","mo-1-2":"images/mo-1-2.jpg","mo-1-3":"images/mo-1-3.jpg","mo-1-4":"images/mo-1-4.jpg","mo-1-5":"images/mo-1-5.jpg","mo-1-7":"images/mo-1-7.jpg","mo-10-1":"images/mo-10-1.jpg","mo-10-3":"images/mo-10-3.jpg","mo-10-4":"images/mo-10-4.jpg","mo-2-1":"images/mo-2-1.jpg","mo-2-2":"images/mo-2-2.jpg","mo-2-3":"images/mo-2-3.jpg","mo-3-1":"images/mo-3-1.jpg","mo-3-2":"images/mo-3-2.jpg","mo-4-5":"images/mo-4-5.jpg","mo-4-6":"images/mo-4-6.jpg","mo-5-1":"images/mo-5-1.jpg","mo-5-3":"images/mo-5-3.jpg","mo-6-1":"images/mo-6-1.jpg","mo-6-2":"images/mo-6-2.jpg","mo-7-1":"images/mo-7-1.jpg","mo-7-4":"images/mo-7-4.jpg","mo-7-6":"images/mo-7-6.jpg","mo-8-01":"images/mo-8-01.jpg","mo-8-1":"images/mo-8-1.jpg","mo-8-2":"images/mo-8-2.jpg","mo-8-5":"images/mo-8-5.jpg","mo-8-6":"images/mo-8-6.jpg","mo-9-1":"images/mo-9-1.jpg","mo-9-3":"images/mo-9-3.jpg","rb-ftcsim":"images/rb-ftcsim.jpg","rb-g9-iterate":"images/rb-g9-iterate.jpg","rb-g9-sketch":"images/rb-g9-sketch.jpg","rb-onshape-chassis":"images/rb-onshape-chassis.jpg","rb-onshape-gripper":"images/rb-onshape-gripper.jpg","rb-onshape-robot":"images/rb-onshape-robot.jpg","rb-vex-field":"images/rb-vex-field.jpg","robot-bench":"images/robot-bench.jpg","robot-hands":"images/robot-hands.jpg","robot-hands-2":"images/robot-hands-2.jpg","robot-hs-4940":"images/robot-hs-4940.jpg","robot-hs-build":"images/robot-hs-build.jpg","robot-hs-cad":"images/robot-hs-cad.jpg","ss-1-1":"images/ss-1-1.jpg","ss-1-2":"images/ss-1-2.jpg","ss-1-3":"images/ss-1-3.jpg","ss-1-4":"images/ss-1-4.jpg","ss-1-5":"images/ss-1-5.jpg","ss-2-1":"images/ss-2-1.jpg","ss-2-2":"images/ss-2-2.jpg","ss-3-0":"images/ss-3-0.jpg","ss-3-1":"images/ss-3-1.jpg","ss-3-2":"images/ss-3-2.jpg","ss-3-3":"images/ss-3-3.jpg","ss-3-4":"images/ss-3-4.jpg","ss-3-5":"images/ss-3-5.jpg","ss-4-1":"images/ss-4-1.jpg","ss-4-2":"images/ss-4-2.jpg","ss-4-3":"images/ss-4-3.jpg","ss-5-1":"images/ss-5-1.jpg","ss-5-2":"images/ss-5-2.jpg","ss-5-3":"images/ss-5-3.jpg","ss-5-4":"images/ss-5-4.jpg","ss-5-5":"images/ss-5-5.jpg","ss-5-6":"images/ss-5-6.jpg","ss-5-7":"images/ss-5-7.jpg","ss-6-1":"images/ss-6-1.jpg","ss-6-2":"images/ss-6-2.jpg","ss-6-3":"images/ss-6-3.jpg","ss-6-4":"images/ss-6-4.jpg","ss-6-5":"images/ss-6-5.jpg","ss-6-6":"images/ss-6-6.jpg","vj-cn-band":"images/vj-cn-band.jpg","vj-cn-cafe":"images/vj-cn-cafe.jpg","vj-cn-reporter":"images/vj-cn-reporter.jpg","vj-cn-soccer":"images/vj-cn-soccer.jpg","vj-cn-trivia":"images/vj-cn-trivia.jpg","vj-construction":"images/vj-construction.jpg","vj-editing":"images/vj-editing.jpg","vj-hair":"images/vj-hair.jpg","vj-interview":"images/vj-interview.jpg","vj-music":"images/vj-music.jpg","vj-psa1":"images/vj-psa1.jpg","vj-psa2":"images/vj-psa2.jpg","vj-psa3":"images/vj-psa3.jpg","vj-research":"images/vj-research.jpg","vj-spirit":"images/vj-spirit.jpg","vj-street":"images/vj-street.jpg","vj-title":"images/vj-title.jpg","vj-title-card":"images/vj-title-card.jpg","vp-camera":"images/vp-camera.jpg","vp-editing":"images/vp-editing.jpg","vp-howto1":"images/vp-howto1.jpg","vp-howto2":"images/vp-howto2.jpg","vp-mv1":"images/vp-mv1.jpg","vp-mv2":"images/vp-mv2.jpg","vp-mv3":"images/vp-mv3.jpg","vp-mv4":"images/vp-mv4.jpg","vp-mv5":"images/vp-mv5.jpg","vp-sf-reflect":"images/vp-sf-reflect.jpg","vp-sf-script":"images/vp-sf-script.jpg","vp-sf-storyboard":"images/vp-sf-storyboard.jpg","vp-sf-title":"images/vp-sf-title.jpg","vp-sf1":"images/vp-sf1.jpg","vp-sf5":"images/vp-sf5.jpg","vp-sf6":"images/vp-sf6.jpg"};
+  var LEFT = '<svg aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L5 8l5 5"></path></svg>';
+  var RIGHT = '<svg aria-hidden="true" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3l5 5-5 5"></path></svg>';
+
+  /* Photo slots: a key in IMGS shows a real photo; anything else shows a graph-paper placeholder with the label.
+     A step's third field is either one image key (with the label in the fourth field) or a list of [key, label] pairs, which renders as a carousel. */
+  var MYP_CRITERIA = "Each unit was assessed against all four MYP Design criteria: A, Inquiring and analysing; B, Developing ideas; C, Creating the solution; and D, Evaluating.";
+
+  var PROJECTS = [
+    {
+      slug: "mechanical-design", title: "Mechanical Design Challenge", context: "Grades 10–12 Technological Design · Holy Names, Windsor", cats: ["ontario"],
+      card: ["mech-crane", "A student-built hydraulic crane made from syringes, tubing and wood"], hero: ["mech-machines", "Finished student machines on a workbench, built from syringes, tubing and wooden sticks"],
+      summary: "The culminating challenge of a mechanical design unit. Working in groups of three, students designed and built a hydraulic machine from a limited kit of materials, then tested it in front of the class.",
+      meta: [["Course", "TDJ2O/3M/4M Technological Design (combined Grades 10–12)"], ["School", "Holy Names Catholic High School, Windsor"], ["Focus", "Simple machines, hydraulics, CAD, prototyping"], ["Year", "2022–23"]],
+      steps: [
+        ["Research and planning", "Each group assigned a research lead, a construction lead and a design lead. Working in a shared research document, students identified the simple machines their design would use, explained how a hydraulic system of syringes and tubing transfers force, gathered images of real machines for inspiration, and planned around the design criteria: the machine had to raise a 200 g load at least 15 cm and weigh less than 400 g, with a bonus for the ability to grab, swivel or scoop.", [["md-res-1", "Research document: a class 1 lever and a two-syringe hydraulic system, explained in the student’s own words"], ["md-res-4", "Research document: planning the hydraulic system, the supports and the platform"], ["md-res-3", "Research document: scissor mechanisms and hydraulic arms gathered as inspiration"]]],
+        ["Sketches", "Students produced orthographic and isometric concept sketches with dimensions, along with detail sketches of how the syringes would mount to the frame.", [["hs-md-sketch", "A student’s sketch of a hydraulic arm, with a detail view of how the syringe mounts"], ["md-sk-1", "Orthographic and isometric concept sketches of a hydraulic platform, with dimensions"], ["md-sk-3", "Detail sketches showing how a syringe mounts to the frame"]]],
+        ["CAD drawings", "Students developed their designs in AutoCAD or SketchUp and presented top, front, side and isometric views. The brief made clear that designs could change at this stage, and that this was expected.", [["hs-md-cad", "CAD views of a hydraulic machine: top, front, side and isometric"], ["md-cad-1", "A SketchUp model of a hydraulic arm, with the syringe and tubing modelled"], ["md-cad-6", "Top, front, side and isometric views of a hydraulic platform"], ["md-cad-7", "Orthographic and isometric views of a machine with a rotating arm"], ["md-cad-iso", "An exploded isometric view showing each component before assembly"], ["md-cad-lever", "A lever-based design modelled in SketchUp"], ["md-cad-3", "A scissor-style platform modelled in SketchUp"], ["md-cad-2", "Top view of a hydraulic arm with dimensions"]]],
+        ["Build and test", "Using syringes, plastic tubing, wooden sticks, skewers, a glue gun and recycled materials, students built their machines from their CAD drawings, tested them, and redesigned through trial and error.", [["hs-md-materials", "The materials kit: syringes, tubing, wooden sticks, dowels and a glue gun"], ["mech-hs-build1", "Students cutting and assembling parts at a shop bench"], ["mech-hs-build2", "A group measuring and cutting cardboard parts for their machine"], ["mech-hs-build4", "Students testing a syringe-powered mechanism at the bench"], ["mech-measure", "Measuring components before cutting"], ["mech-measure-2", "Marking a wooden stick to length"], ["mech-hacksaw", "Cutting a wooden stick with a hacksaw held in a bench vise"], ["mech-crane", "A student-built hydraulic crane made from syringes, tubing and wood"]]],
+        ["Competition and reflection", "Final builds were tested in front of the class. Prizes recognized the heaviest load, the greatest height, the largest platform, the most efficient design and the most sustainable design, with honourable mentions for the coolest design, the best teamwork and the best 3D printing. Students then reflected on their designs and on their group’s dynamics through self- and peer-assessment.", "mp4:files/Mechanical_Design_Challenge_Build_and_Test.mp4", "Student machines lifting and scooping their loads during testing (no sound)", [["mech-shop", "The design shop after the competition, with finished machines on the benches"], ["mech-machines", "Finished student machines on a workbench"]], "mech-video-poster"]
+      ],
+      trio: [
+        ["Curriculum connections", "The unit addresses the four strands of the Technological Design curriculum: design fundamentals and skills through research, sketching, CAD and prototyping; Technology, the Environment, and Society through the use of recycled materials and a prize for the most sustainable design; and Professional Practice and Career Opportunities through safe tool use and defined project roles."],
+        ["Assessment", "Students were assessed on the research document, sketches, CAD drawings, the build and test, and a written reflection, and I used an assessment checklist to determine the prize categories. Because the categories rewarded efficiency, sustainability and teamwork as well as performance, groups could succeed in more than one way."],
+        ["Safety", "Students worked with hacksaws, bench vises, cordless drills and hot glue guns after signing the board’s student safety agreement. Under the board’s safety rules, no student used a tool before receiving instruction on its safe operation, so each tool was introduced through a demonstration, and the unit addressed the curriculum’s expectation that students apply health and safety practices throughout the design process."],
+        ["Differentiation and English language learners", "Defined roles gave every student a clear point of entry, and a student still developing English could lead construction while contributing to the research in a supported role. Tools and processes were demonstrated before they were described in writing, a word wall paired the names of tools and mechanical terms with photographs, safety instructions used pictograms, and students could communicate design decisions through labelled sketches rather than extended prose."]
+      ],
+      resources: [["Mechanical Design Challenge Project", "Assignment brief · slides", "files/Mechanical_Design_Challenge_Project.pdf"], ["Mechanical Design Challenge Research Document", "Template · PDF", "files/Mechanical_Design_Challenge_Research_Document_Template.pdf"], ["Build and test video", "Student machines being tested · 45 seconds, no sound", "files/Mechanical_Design_Challenge_Build_and_Test.mp4"]],
+      reflection: [
+        "The competition format was the most successful element of the unit, because it engaged students who had previously shown little interest in the course. That said, the evidence of learning I valued most was not the winning machine. It was the record of what happened between the first failed test and the final build: the syringe that leaked, the arm that buckled under the load, and the group conversation about why.",
+        "This project convinced me that the process matters more than the product. A machine that raises the load on the first attempt can teach a student very little, while a machine that fails twice and is redesigned teaches a great deal about forces, materials and collaboration. For this reason, the day after the competition was as important as the competition itself: we reviewed the results together, discussed why reflection matters to designers, and reflected as a group before students completed their own reflection survey. With teacher candidates, I would use this unit to show how prize categories and a reflection component can make that process visible and assessable."
+      ]
+    },
+    {
+      slug: "sustainable-styling", title: "Sustainable Styling", context: "Grade 7 MYP Design · Madrid, Spain", cats: ["myp"],
+      card: ["ss-5-3", "A finished pencil case in a floral print with a pink zip panel"], hero: ["ss-5-2", "A finished pencil case in a lemon print, unzipped to show the lining"],
+      summary: "Students designed and sewed a coin purse or pencil case promoting one of the UN Sustainable Development Goals, as a prototype for a set of promotional items for a school that collaborates with UNICEF. The images below are drawn from student workbooks and from the design room, with names removed and faces blurred.",
+      meta: [["Course", "MYP Design, Grade 7"], ["School", "International College Spain, Madrid"], ["Focus", "Textiles, sustainability, design cycle"], ["Year", "2024–25"]],
+      steps: [
+        ["Situation and research", "Students began with the design situation: the Sustainable Development Goals, the school’s collaboration with UNICEF, and a client who would carry the product. They chose a client, built a research plan that ranked what they needed to know, studied the anatomy of a sewing machine, and investigated how cotton is grown and processed and how sustainable it is.", [["ss-1-1", "Workbook page: the design situation and the choice of client"], ["ss-1-3", "Workbook page: a research plan that ranks what the student needs to know"], ["ss-1-2", "Workbook page: labelling the parts of a sewing machine"], ["ss-1-4", "Workbook page: research on how cotton is grown and where"], ["ss-1-5", "Workbook page: research on the properties and sustainability of cotton"]]],
+        ["Analysing existing products", "Students compared three existing pencil cases against the same set of criteria, including aesthetics, cost, customer, environment, size, safety, function and materials, and drew a conclusion that would shape their own design.", [["ss-2-1", "Workbook page: a comparison of three existing pencil cases"], ["ss-2-2", "Workbook page: a second student’s analysis of three existing products"]]],
+        ["Specifications and design ideas", "Students wrote a specification justified by their research, with an objective and a subjective measure of success for each point. They assembled a trend board based on their chosen goal, then produced annotated design ideas and reviewed each one against the specification.", [["ss-3-0", "Workbook page: a specification with a justification and a measure of success for each point"], ["ss-3-1", "Workbook page: a trend board built around Sustainable Development Goal 4, Quality Education"], ["ss-3-2", "Annotated design idea for a pencil case promoting good health and well-being"], ["ss-3-3", "A second annotated design idea, with notes on materials and size"], ["ss-3-4", "Annotated design idea for a pencil case promoting clean water"], ["ss-3-5", "Annotated design idea showing a zipper and a water-themed print"]]],
+        ["Making", "Students drew a pattern, wrote a production plan with health and safety notes, prepared and ironed their fabric, threaded and troubleshot a sewing machine, and sewed a product with a zipper. They logged every change to their plan as they worked.", [["ss-4-2", "Students tracing patterns and marking fabric at a shared workbench"], ["ss-4-3", "Students cutting patterns and fabric around a shared workbench"], ["ss-4-1", "Students pressing fabric and preparing zippers at an ironing station"]]],
+        ["The finished products", "Each student completed a working product with a zipper and annotated it to explain how the design communicated their chosen goal.", [["ss-5-1", "Three finished pencil cases and a coin purse on a table"], ["ss-5-2", "A finished pencil case in a lemon print"], ["ss-5-3", "A finished pencil case with a floral print and a pink zip panel"], ["ss-5-4", "A finished pencil case in a patterned fabric"], ["ss-5-5", "Workbook page: an annotated coin purse representing gender equality"], ["ss-5-6", "Workbook page: an annotated pencil case representing good health and well-being"], ["ss-5-7", "Workbook page: an annotated pencil case representing clean water and sanitation"]]],
+        ["Testing and evaluating", "Students designed a test for each specification, collected performance data and feedback from their client, explained the strengths and the improvements they would make, and evaluated the impact of their product on their friends, the school community and the wider goal.", [["ss-6-1", "Workbook page: testing methods and a summary of results"], ["ss-6-4", "Workbook page: a second student’s testing methods"], ["ss-6-2", "Workbook page: strengths and annotated improvements"], ["ss-6-5", "Workbook page: improvements with photographs of the finished product"], ["ss-6-3", "Workbook page: evaluating the impact of the solution"], ["ss-6-6", "Workbook page: a second student’s evaluation of impact"]]]
+      ],
+      trio: [
+        ["Unit framework", "Statement of inquiry: “Designers can communicate powerful messages which can promote sustainability, through considered solutions based on client perspectives.” Key concept: Communication. Related concepts: Form and Perspectives. Global context: Fairness and Development."],
+        ["Assessment", MYP_CRITERIA + " The workbook opened each criterion with a mark scheme that matched every strand to the slides where students would provide evidence, so that students could see from the outset how their work would be assessed."],
+        ["Safety", "Each production plan included health and safety notes for the sewing machine, scissors, pins and iron, and students practised threading and troubleshooting the machine before beginning their own product."],
+        ["Differentiation and multilingual learners", "The workbook scaffolds each stage with structured tables for research, specifications, production and testing, and the GRASPS framing gives students a clear role, audience and product. For students still developing English, key vocabulary was introduced with images, the comparison and specification tables reduced the demand for extended writing, students could research in their first language before recording findings in English, and annotated sketches and photographs counted as evidence alongside written explanation."]
+      ],
+      resources: [["Sustainable Styling Student Workbook", "Student workbook · slides", "files/Sustainable_Styling_Student_Workbook.pdf"]],
+      reflection: [
+        "In addition to teaching me how difficult it is to manage a room of 12-year-olds using sewing machines, this unit also taught me how much differentiation a single design brief has to carry. My Grade 7 students ranged from confident English writers to students who were still building academic vocabulary, and from students who had sewn before to students who had never threaded a needle. The structured tables in the workbook allowed every student to complete the same design cycle, while the depth of their annotations and analysis varied with their language level and experience.",
+        "The finished pencil cases were probably the least important evidence of learning in the unit. A crooked seam or a zipper sewn in backwards often prompted the most thoughtful evaluation, because students had to explain what went wrong and what they would change. Very few of my students will sew professionally, but all of them practised researching a client, justifying a decision and testing a product against criteria, and those skills transfer to every design context."
+      ]
+    },
+    {
+      slug: "logo-design", title: "Logo Design and Brand Identity", context: "Grade 11 Communications Technology · Catholic Central, Windsor", cats: ["ontario"],
+      card: ["logo-a-primary", "A student’s primary logo: the word VIRIDIS over a green wireframe globe"], hero: ["logo-hero", "Two student primary logos on black: VIRIDIS with a green wireframe globe, and The Optimis Design Studio"],
+      summary: "Students created a logo for their own graphic design company, then built a brand identity around it that they used in later projects throughout the semester.",
+      meta: [["Course", "TGJ3M Communications Technology (combined with TGJ2O)"], ["School", "Catholic Central High School, Windsor"], ["Tools", "Canva, Photoshop"], ["Year", "2023–24"]],
+      steps: [
+        ["Mood board", "Students named their company, or used their own name, and assembled a mood board with a colour palette and sources of inspiration that set the direction for the brand.", [["lg-mood-1", "A mood board in blues and whites with a colour palette"], ["lg-mood-2", "A mood board built around a red, black and white palette"], ["lg-mood-3", "A mood board in warm autumn tones"], ["lg-mood-4", "A mood board in teal and pastel tones"]]],
+        ["Sketches and iteration", "Students produced multiple rough sketches before committing to a direction, then refined their chosen idea through several digital iterations, testing letterforms, colour and symbols.", [["lg-hs-sketch1", "Pencil sketches exploring logo ideas built around pencils, a light bulb and a paintbrush"], ["lg-hs-sketch2", "A second page of sketches developing a brush and a brain motif"], ["lg-hs-sketch3", "Sketches and wordmark studies for a company called Somptueux"], ["lg-sketch", "Hand-drawn sketches exploring several ideas for a company called Connect"], ["lg-it-1", "Iteration: a simplified V mark"], ["lg-it-2", "Iteration: the wordmark set over a wireframe globe in white"], ["lg-it-3", "Iteration: the wordmark alone, without the globe"], ["lg-it-4", "Iteration: testing the logo on a green background"]]],
+        ["The primary logo", "Students finalized a primary logo, selecting typefaces that represented their brand, adjusting letter spacing and line height, and applying colour theory to convey the mood they wanted to achieve.", [["logo-a-primary", "Primary logo: VIRIDIS over a green wireframe globe"], ["lg-euph", "Primary logo: Euphoric Essence, pairing a geometric and a script typeface"], ["lg-connect", "Primary logo: Connect, built around a puzzle-piece symbol"], ["logo-b-primary", "Primary logo: The Optimis Design Studio"]]],
+        ["Applying the brand", "Students placed their logo on merchandise and designed a two-sided business card, paying attention to hierarchy, proximity, sizing and position.", [["lg-hs-apply", "The Blossom Design logo applied to a t-shirt, a hoodie and a bucket hat"], ["lg-mug", "The Connect logo applied to a mug"], ["lg-tees", "The Connect logo on the front and back of a t-shirt"], ["lg-tee-2", "The Euphoric Essence logo on a t-shirt mock-up"], ["logo-a-card", "A business card for Viridis Inc. on a dark green background"]]],
+        ["Variations and guidelines", "Students designed secondary versions of their logo and a guidelines style sheet that followed industry conventions, showing how the logo should and should not be applied.", [["logo-a-variations", "Logo variations in different colours and simplified forms"], ["logo-a-guidelines", "A guidelines sheet showing primary and secondary logos and background colours"], ["logo-c-guidelines", "A guidelines sheet for Blossom Design, with examples of incorrect use"]]]
+      ],
+      trio: [
+        ["Curriculum connections", "The project draws on the Communications Technology Fundamentals and Skills strands through typography, colour theory, layout and the conventions of brand guidelines, and on Professional Practice and Career Opportunities through the work of graphic designers and the expectation that a brand is applied consistently across products."],
+        ["Assessment", "The brief listed the criteria from the first lesson as questions students could ask of their own work, covering the mood board, sketches, typography, colour, application, the business card, the guidelines and the overall design. Students submitted six files: photographs of their sketches, the mood board, the primary logo, a merchandise mock-up, the business card and the guidelines."],
+        ["Differentiation and English language learners", "Because a logo communicates visually, this project allowed newcomers to demonstrate design thinking with little dependence on written English. I modelled each design principle with visual examples, posted the vocabulary of the criteria (hierarchy, proximity, contrast) with images, accepted company names in any language, and offered sentence frames such as “I chose this colour because…” for the design rationale."]
+      ],
+      resources: [["Logo Design Project", "Assignment brief · slides", "files/Logo_Design_Project.pdf"]],
+      reflection: [
+        "From a teaching perspective, this project reinforced my view that tools and software matter less than transferable skills. Some students designed in Canva and others in Photoshop, and the software made far less difference to the quality of their work than their understanding of hierarchy, contrast, and colour. A student who understands why a logo needs a simplified secondary version can apply that knowledge in any program they use in the future.",
+        "Because students used their logo in later projects, the brand became a thread through the semester rather than a single assignment. If anything, the sketches and the guidelines sheet revealed more about each student’s design thinking than the primary logo itself, and I would give the iteration stage more weight in the assessment if I taught the project again."
+      ]
+    },
+    {
+      slug: "video-production", processTitle: "The projects", numbered: false, title: "Video Production", context: "Grades 9 to 11 Communications Technology and Exploring Technologies · Catholic Central, Windsor", cats: ["ontario"],
+      card: ["vp-camera", "A student filming an interview in a school hallway with a DSLR camera and an on-camera microphone"], hero: ["vp-camera", "A student filming an interview in a school hallway with a DSLR camera and an on-camera microphone"],
+      summary: "Students developed their video production skills through a sequence of projects, each of which introduced a new skill: a question-and-answer video, a how-to video, a holiday video story, a short film and a music video.",
+      meta: [["Courses", "TGJ2O/3M Communications Technology; TIJ1O Exploring Technologies"], ["School", "Catholic Central High School, Windsor"], ["Tools", "Cell phones, DSLR cameras, external microphones, lights, Adobe Premiere Pro, Canva"], ["Years", "2023–24 and 2025–26"]],
+      steps: [
+        ["Camera skills and safety", "Students began with a lesson on shooting video that holds attention: tell a story with a clear hero, plan a shot list, keep shots short and steady, use the rule of thirds, light the subject from the front, record clear sound and gather B-roll. Before using the department’s DSLR cameras, every student completed a Camera Assembly Test: removing and checking the camera body, lens, microphone, battery and SD card, attaching the lens and microphone, holding the camera safely for filming, and disassembling and storing the kit.", [["vp-camera", "A student filming an interview with a DSLR camera and an on-camera microphone"]]],
+        ["Q&A video", "[Description to come from the assignment brief.] Students recorded and edited a short question-and-answer video, practising interview framing, clean audio and basic editing.", [["vp-editing", "Students editing interview footage in Adobe Premiere Pro"]]],
+        ["How-to video", "Students planned and filmed a short instructional video that demonstrated a process step by step, on topics such as tying shoes and styling a hijab, and then edited it in Adobe Premiere Pro.", [["vp-howto1", "A how-to video on opening a combination lock"], ["vp-howto2", "A how-to video demonstrating hijab styling on a mannequin"]]],
+        ["Holiday video story", "Students produced a short documentary-style story about the holiday season at school, covering events such as Christmas Spirit Week and the school’s Christmas Mass.", [["vj-spirit", "A holiday video opening on Christmas Spirit Week"]]],
+        ["Short film", "Working in production crews, students wrote a script using generative AI as a starting point, storyboarded it, filmed on their phones in landscape orientation, edited in Canva, and screened a film of two to five minutes for the class.", [["vp-sf-script", "An AI-drafted script that the group went on to revise"], ["vp-sf-storyboard", "A group’s storyboard for a film about cheating and detention"], ["vp-sf-title", "Title card: Whispers in the Shadow"], ["vp-sf1", "A scene from a student film about bullying, with subtitles"], ["vp-sf5", "A stylized title sequence from a student film"], ["vp-sf6", "A figure in a doorway, from a student horror film"], ["vp-sf-reflect", "A student’s reflection on how the group filmed and edited its story"]]],
+        ["Music video", "Working in small groups, students planned, filmed and edited a music video that told a clear story or shared a clear message, using the department’s DSLR cameras and external microphones and editing in Adobe Premiere Pro.", [["vp-mv1", "A Halloween-themed scene in a school hallway"], ["vp-mv2", "Two performers in a student music video"], ["vp-mv3", "A performer filmed outdoors beside the school"], ["vp-mv4", "Three performers outside the school on a sunny afternoon"], ["vp-mv5", "A lyric subtitle over a low-light shot"]]]
+      ],
+      trio: [
+        ["Curriculum connections", "The sequence addresses the Communications Technology Fundamentals and Skills strands through planning, camera operation, lighting, audio and editing, and the Professional Practice and Career Opportunities strand through safe equipment handling and the production roles found in the industry."],
+        ["Assessment", "Each brief set out its success criteria as questions from the first lesson, for example whether shots were well framed and well lit with good audio, whether the editing was smooth, and whether effects supported the story. The Camera Assembly Test was assessed separately with a four-level rubric out of 60."],
+        ["Safety and equipment", "The Camera Assembly Test made safe handling a prerequisite for filming, and its rubric rewarded careful handling, cable management and correct storage. Students and parents also signed the board’s student safety agreement at the start of the course."],
+        ["Differentiation and English language learners", "Projects such as the how-to video and the music video can tell a story with little or no dialogue, which made them among the most accessible projects in the course for students who were still learning English. I demonstrated each step before students attempted it, the Camera Assembly Test was a performance assessment rather than a written one, groups divided production roles according to strength, and students could plan in their first language and present a plan as a sketched shot list or storyboard rather than a written treatment."]
+      ],
+      resources: [["Short Film Project", "Assignment brief · slides", "files/Short_Film_Project.pdf"], ["Music Video Project", "Assignment brief · slides", "files/Music_Video_Project.pdf"], ["Camera Assembly Test Rubric", "Rubric · document", "files/Camera_Assembly_Test_Rubric.pdf"]],
+      reflection: ["I designed this sequence so that each project introduced one new skill while reinforcing the ones before it. Students who had already framed an interview, recorded clean audio and edited a how-to video arrived at the short film and the music video ready to make creative decisions rather than fighting with the equipment. For the same reason, I treated the Camera Assembly Test as seriously as any video, because students who could set up, handle and store the cameras confidently could spend their filming time on the story itself.", "The sequence also reminded me that you do not always need expensive technology to teach technology. Students filmed their short films on their own phones and edited them in Canva, and those films taught the same lessons about framing, sequencing and collaboration as the projects filmed on DSLR cameras. In the short film, the most valuable moment was often the realization that the AI-drafted script could not be filmed in a school hallway in a week, and the critical revision that followed. With teacher candidates, I would use this sequence to discuss how to scaffold a series of projects so that technical skill and creative ambition grow together."]
+    },
+    {
+      slug: "video-journalism", processTitle: "What students did", numbered: false, title: "Video Journalism", context: "Grades 9 to 11 Communications Technology · Catholic Central, Windsor", cats: ["ontario"],
+      card: ["vj-title-card", "The Comet News title card over a photo of Catholic Central High School"], hero: ["vj-title", "The Comet News title card over a photo of Catholic Central High School"],
+      summary: "Students learned to find, research and report stories about their own school community. Their segments became Comet News, a video newsletter played to the whole school that showcased school events, sports, faith life and student achievements. For a time, the class produced a new edition every month.",
+      meta: [["Course", "TGJ2O/3M Communications Technology"], ["School", "Catholic Central High School, Windsor"], ["Tools", "DSLR cameras, external microphones, lights, Adobe Premiere Pro"], ["Years", "2023–24 and 2025–26"]],
+      steps: [
+        ["Learning the form", "An introductory lesson set out what video journalists do: find stories, interview subjects, film footage, and edit and publish video. Students learned how to prepare interview questions, why good audio is essential, and how B-roll explains or supplements an interview. They then analysed a professional example in a research document, identifying techniques such as interviews, B-roll, music and motion graphics and explaining how each contributed to the story.", [["vj-research", "A student’s analysis of how a professional journalist used B-roll and interviews"]]],
+        ["Planning and interviewing", "Groups wrote interview questions and a script that paired each line of A-roll with planned B-roll. Stories included a spotlight on the construction class, a football game, a look inside the main office, the gym and the hairstyling program.", [["vj-street", "A street-style interview in a school hallway"], ["vj-interview", "An interview answer with on-screen subtitles"], ["vj-construction", "A spotlight on the construction class, with the teacher guiding a student"], ["vj-hair", "B-roll from the hairstyling classroom"], ["vj-editing", "Editing the hairstyling story in Adobe Premiere Pro"]]],
+        ["Comet News", "The first edition of Comet News, in May 2024, was introduced by student anchors and included segments on the school’s Arts Fest, the student-run cafeteria in the hospitality program, the Grade 11 retreat, the senior boys soccer season, a “What are you listening to?” street feature and a teacher trivia game. It closed by inviting viewers to take Communications Technology and learn to make a video like it themselves.", [["vj-title", "The Comet News title card"], ["vj-music", "An interview with the school’s music teacher"], ["vj-cn-reporter", "A student reporter introduced on location outside the school"], ["vj-cn-cafe", "B-roll of students making pizza in the hospitality program’s kitchen"], ["vj-cn-band", "A student band member, the singer and bassist, interviewed in the music room"], ["vj-cn-soccer", "Footage of the senior boys soccer team in a match"], ["vj-cn-trivia", "A Comet News segment featuring me in the Communications Technology lab"]]],
+        ["Public service announcements", "For the Windsor-Essex County Health Unit’s Break the Vape challenge, students produced short public service announcements on youth vaping, each ending with one of the challenge’s calls to action, such as “Support a friend” or “Choose to live vape free.” A class entry placed in the challenge and won a prize.", [["vj-psa1", "A PSA closing on the call to action “Quit vaping now!”"], ["vj-psa2", "A PSA with the message “Break the trend, don’t start vaping”"], ["vj-psa3", "An animated PSA set in a school hallway"]]],
+      ],
+      trio: [
+        ["Curriculum connections", "The project addresses the Communications Technology Fundamentals and Skills strands through research, interviewing, filming and editing, and the Technology, the Environment, and Society strand through the role of media in a school community."],
+        ["Differentiation and English language learners", "Students worked in groups with defined roles, such as interviewer, camera operator and editor, so that each student could contribute from a position of strength. Interview questions could be drafted in a first language before being refined in English, B-roll allowed students to tell part of a story visually, and on-screen subtitles supported both viewers and students who were still developing spoken English."]
+      ],
+      resources: [["Video Journalism Research", "Template · document", "files/Video_Journalism_Research_Template.pdf"]],
+      reflection: ["This project grew out of my service learning project in teacher’s college, in which I designed a digital news literacy program for older adults in Windsor. That experience convinced me that the ability to judge whether a news story is reliable is a precursor to meaningful participation in a democratic society. One of the best ways for students to develop that judgement, I would argue, is to report the news themselves, because students who have had to check a fact, find a second source and decide what to leave out are more likely to read the news critically.", "Comet News also gave students a real audience. Knowing that their segments would be played to the whole school gave the work a purpose beyond a grade, and it made the class a service to the school community. I also see journalism as a continuation of much older storytelling traditions, including Indigenous oral traditions, which reminds students that a communication technology is only as good as the story it carries. With teacher candidates, I would use this project to discuss how an authentic audience can motivate students more effectively than marks alone."]
+    },
+    {
+      slug: "first-robotics", processTitle: "What students did", numbered: false, title: "Robotics", context: "Design lead and robotics teacher · Holy Names, Windsor", cats: ["ontario"],
+      card: ["robot-bench", "A VEX Clawbot built by students, on a workbench beside its build instructions"], hero: ["robot-bench", "A VEX Clawbot built by students, on a workbench beside its build instructions"],
+      summary: "During my STEM internship in teacher’s college, I served as design lead for the Knights Vision 4940 FIRST Robotics team at Holy Names. I also taught robotics in a Grades 11 and 12 Robotics Manufacturing course and a Grade 9 STEM course.",
+      meta: [["Role", "Design lead, FIRST Team 4940; robotics teacher"], ["School", "Holy Names Catholic High School, Windsor"], ["Tools", "Onshape, SketchUp, VEX, FTC Sim"], ["Season", "2022–23"]],
+      steps: [
+        ["Design strategy", "I led students on the team in developing a strategy for the robot’s design in response to the season’s game, moving from hand sketches to full-scale drawings of each mechanism.", [["hs-rb-sketch", "A hand-drawn layout of the drivetrain and chain drive on grid paper"], ["hs-rb-drawing", "A full-scale drawing of the arm and intake, with the game piece placed to check the fit"], ["robot-hs-4940", "The finished Team 4940 robot in the build space"]]],
+        ["CAD modelling and prototyping", "I taught students to design robot components in Onshape and met with them weekly throughout the build. Designs were checked with quick wooden prototypes before parts were cut or printed.", [["robot-hs-cad", "Students refining a CAD model beside wooden and 3D-printed prototype parts"], ["robot-hs-build", "Students and mentors assembling a wooden prototype of a mechanism"]]],
+        ["Competition", "The team competed in two tournaments that season, in Waterloo and Windsor.", "yt:zjpS5XiiFe4", "Competition match video"],
+        ["Robotics Manufacturing, Grades 11 and 12", "In Robotics Manufacturing, students built and rebuilt VEX Clawbots, programmed robot functions in a FIRST Tech Challenge simulator, designed a VEX competition field, modelled robot parts and assemblies in Onshape for 3D printing, and debated ethical issues in robotics and the future of work.", [["rb-onshape-chassis", "A student’s Onshape assembly of a four-module robot drivetrain"], ["rb-onshape-robot", "The Onshape culminating assignment: a drivetrain and bumpers checked against the robot’s starting-size envelope"], ["rb-onshape-gripper", "A robot gripper part modelled in Onshape"], ["rb-vex-field", "A VEX competition field designed and dimensioned in SketchUp"], ["rb-ftcsim", "Programming a robot in Java in the FIRST Tech Challenge simulator"], ["robot-hands", "Students assembling a VEX Clawbot, shown from the shoulders down"], ["robot-hands-2", "Students fastening parts of a VEX build"], ["robot-bench", "A finished VEX Clawbot beside its build instructions"]]],
+        ["Grade 9 STEM: Robot Design Proposal", "In the Grade 9 STEM course, students working in alliances of three proposed robots for the 2023 FIRST Robotics Competition game, moving from research and sketches to a scale 3D model and a presentation.", [["rb-g9-sketch", "A Grade 9 robot proposal sketched in isometric, front and top views"], ["rb-g9-iterate", "A Grade 9 student’s first and final robot sketches, showing how the design changed"]]]
+      ],
+      trio: [
+        ["Curriculum connections", "Robotics Manufacturing was delivered as a Technological Design course with a robotics emphasis (TDR3M/4M), organized into six units: introduction to robotics, robotics in society, coding, 3D design, construction, and careers. The ethics debate connected directly to the Technology, the Environment, and Society strand."],
+        ["Assessment", "The FTC Sim Coding Challenge assessed students’ programs against three measures: points scored in 30 seconds, the fastest time to 10 points, and the fewest lines of code needed to reach 10 points. The Grade 9 Robot Design Proposal served as that course’s culminating assessment."],
+        ["Safety and coaching", "Construction followed the same Technological Design safety expectations as the rest of the program, and students received instruction on the safe operation of each tool before using it. As design lead, my role was to teach the CAD and design skills that allowed students to make decisions about the robot themselves, rather than to make those decisions for them."],
+        ["Differentiation and English language learners", "VEX build instructions are almost entirely visual, which gave every student an accessible starting point. Students chose between Onshape and SketchUp, block-based and text-based coding, and worked in alliances with defined roles. For the ethics debate, students received the vocabulary and sentence frames for agreeing, disagreeing and giving evidence in advance, along with preparation time."]
+      ],
+      resources: [["Match video", "YouTube", "https://www.youtube.com/watch?v=zjpS5XiiFe4"], ["Robot Design Proposal", "Grade 9 assignment brief · slides", "files/Robot_Design_Proposal_Project_Overview.pdf"]],
+      quote: ["I think this project really taught me how to critically think to solve a problem, which is a big benefit for anything I do in the future.", "Grade 11–12 Robotics Manufacturing student, weekly reflection journal"],
+      reflection: [
+        "Working with a FIRST team showed me the difference between knowing a tool and understanding a design process. Onshape, VEX and the FTC simulator will all change, and some will be replaced, but the students who thrived were the ones who learned to break a problem into parts, test one change at a time and explain their reasoning to a teammate.",
+        "The most important decision a design lead makes, in my view, is how much to leave to the students. A robot designed largely by adults might perform better at a tournament, but it teaches students very little. I would bring that tension into a teacher education course, because the same question about student ownership arises in every Technological Education classroom."
+      ]
+    },
+    {
+      slug: "community-architecture", title: "Community Architecture Proposal", context: "Grades 11–12 Architectural Design · Holy Names, Windsor", cats: ["ontario"],
+      card: ["hs-ca-3d1", "A student’s 3D model of an arched brick building set in a park"], hero: ["hs-ca-3d1", "A student’s 3D model of an arched brick building set in a park"],
+      summary: "The culminating project for my Grades 11 and 12 Architectural Design course. Working in pairs, students chose one of two Windsor sites expected to be redeveloped, researched the surrounding neighbourhood, and proposed a building that responds to the needs of the community around it.",
+      meta: [["Course", "TDA3M/4M Architectural Design"], ["School", "Holy Names Catholic High School, Windsor"], ["Software", "Revit, SketchUp, Canva"], ["Year", "2022–23"]],
+      steps: [
+        ["Site selection and research", "After completing a case study of an existing community building, each pair chose either the Windsor Arena site or the Met Hospital site, then completed a research document on the lot, the neighbourhood’s demographics, and the needs the community could not currently meet. The exemplar I shared drew on ward-level census data, local news coverage and precedent projects.", [["ca-res-1", "Research document exemplar: the site, with the lot highlighted on an aerial view"], ["ca-res-2", "Research document exemplar: ward-level demographics and the community’s unmet needs"], ["ca-res-3", "Research document exemplar: how the proposal would meet those needs"], ["ca-res-4", "Research document exemplar: precedent projects for inspiration"]]],
+        ["Floor plan", "Students drafted a two-dimensional floor plan in Revit, building on a residential Revit tutorial completed earlier in the course, so that the plan became the basis for the three-dimensional model.", [["hs-ca-plan1", "A floor plan for a multi-use community building"], ["hs-ca-plan2", "A Level 1 floor plan with retail space and parking"], ["hs-ca-plan3", "A floor plan with seating areas, washrooms and an elevator"], ["cad-model", "A student modelling a building in Revit in the design lab"]]],
+        ["3D concept model", "Students modelled their proposal in Revit or SketchUp, according to their preference. The brief asked them to concentrate on the features that address community needs rather than on a detailed interior, so that I could assess how well they communicated design intent in three dimensions.", [["hs-ca-3d1", "A 3D model of an arched brick building set in a park"], ["hs-ca-3d2", "A 3D model of a mixed-use residential and retail building, with elevations"], ["hs-ca-3d3", "A cutaway 3D model showing the interior layout and the parking lot"], ["hs-ca-3d4", "A 3D model of a two-storey commercial building"]]],
+        ["Presentation board and pitch", "Students designed an architectural presentation board in Canva, Google Drawings or Photoshop and presented their proposal to the class on the final evaluation day.", [["hs-ca-board2", "Presentation board for an affordable housing proposal, with research, concept and structure"], ["hs-ca-board1", "Presentation board for a multi-use site proposal, with plans, renders and the benefits to the community"]]]
+      ],
+      trio: [
+        ["Curriculum connections", "The project draws on all four strands of the Grades 11 and 12 Technological Design curriculum: design fundamentals and skills through research, drafting and modelling; Technology, the Environment, and Society through questions of housing, public space and community need; and Professional Practice and Career Opportunities through a formal presentation of the proposal."],
+        ["Assessment", "Students worked from the brief, a research template and a completed exemplar. In my course outline, term work counted for 85 per cent of the final grade, weighted across Knowledge and Understanding (20 per cent), Thinking (20 per cent), Application (40 per cent) and Communication (20 per cent)."],
+        ["Differentiation and English language learners", "Students worked in pairs, chose their own site and modelling software, and responded to guiding questions in a structured research document rather than an open-ended report. Language supports included an architectural vocabulary list with images and translations, the option to research local sources in a first language, sentence frames for the pitch such as “Our building responds to … by …”, and the option to rehearse or record the presentation in advance."],
+        ["Beyond the classroom", "The same course prepared students for the Skills Ontario Competition, where I coached a student to a fourth-place provincial finish in the secondary Architectural Design contest in 2022."]
+      ],
+      resources: [["Community Architecture Project Proposal", "Assignment brief · slides", "files/Community_Architecture_Project_Proposal.pdf"], ["Research Document Exemplar", "Student exemplar · PDF", "files/Community_Architecture_Research_Document_Exemplar.pdf"], ["Courtyard Design Project Overview", "Related unit · slides", "files/Courtyard_Design_Project_Overview.pdf"]],
+      reflection: [
+        "Given more time, I would have spent longer teaching graphic design principles and tools like Photoshop so that students could produce more polished presentation boards, although my main goal was to assess how well they communicated design ideas visually. In the following semester I ran a related Courtyard Design Project, in which students acted as architects for the Holy Names courtyard, beginning with a whole-class site analysis in groups of four.",
+        "In my opinion, the research document was the heart of this project. Asking students to study census data and local news before drawing a single line changed the question from “What would look good?” to “Who is this building for?”, and that shift in thinking is the transferable skill I most wanted students to develop. With teacher candidates, I would use this project to show how a design brief can connect technical skills to social questions in the students’ own community."
+      ]
+    },
+    {
+      slug: "courtyard-redesign", title: "Courtyard Redesign", context: "Grades 11–12 Architectural Design · Holy Names, Windsor", cats: ["ontario"],
+      card: ["cy-m-5", "A student’s SketchUp model of the school courtyard, with a pergola over picnic tables"], hero: ["cy-m-8", "A student’s SketchUp model of the courtyard, with shade sails over a circular plaza"],
+      summary: "The school’s courtyard was an underused public space, and administration had mentioned that funding might be available for an infrastructure project. Students thought like architects: they analysed the site, researched what makes a good public space, and proposed a redesign to their client in a 3D model and a presentation board.",
+      meta: [["Course", "TDA3M/4M Architectural Design"], ["School", "Holy Names Catholic High School, Windsor"], ["Software", "SketchUp, Canva"], ["Year", "2022–23"]],
+      steps: [
+        ["Site analysis", "The class completed the first stage together. In groups of four, students measured the courtyard, photographed it, and drew a rough site plan, collecting the data everyone would need for the later stages.", [["cy-site-1", "Site analysis photo: the courtyard lawn, looking toward the school"], ["cy-site-2", "Site analysis photo: the courtyard from the opposite corner"], ["cy-site-3", "Site analysis photo: the existing benches and boulder on the lawn"], ["cy-site-plan", "A rough site plan with measurements, the main hallway and the two portables"]]],
+        ["Sketches", "Students drew scaled sketches of the site plan and rough concept sketches in three-dimensional perspective.", [["cy-sk-1", "A scaled site plan with a garden, seating areas and a central planting bed"], ["cy-sk-2", "A scaled site plan laying out rows of tables and planters"], ["cy-sk-3", "A site plan sketch built around a circular central feature"]]],
+        ["Learning SketchUp", "Before modelling the courtyard, students completed a SketchUp landscape design tutorial in which they designed a backyard with a patio, a pergola, planting and paths, practising the tools they would need for their own proposals.", [["cy-tut-1", "Tutorial: a backyard patio with a pergola, outdoor furniture and planting"], ["cy-tut-2", "Tutorial: a garden path lined with flowers and stone beds"], ["cy-tut-3", "Tutorial: a raised deck and a curved stone path"], ["cy-tut-4", "Tutorial: a backyard with a covered patio and a swing set"], ["cy-tut-5", "Tutorial: a pergola over a dining area on a brick patio"], ["cy-tut-6", "Tutorial: a stone patio with a barbecue and outdoor dining"], ["cy-tut-7", "Tutorial: a top-down view of a landscaped backyard"]]],
+        ["3D model", "Students modelled their proposals in SketchUp, applying the skills and practices from the SketchUp tutorial completed earlier in the course.", [["cy-m-1", "Picnic tables beneath mature trees, with a cross at the centre of the courtyard"], ["cy-m-2", "Wooden pergolas along a path, with a giant chessboard and seating"], ["cy-m-3", "Pergolas, raised planters and trees seen from above"], ["cy-m-4", "An aerial view of the courtyard with planters, trees and a central circle"], ["cy-m-5", "A pergola over picnic tables beside a central planting bed"], ["cy-m-6", "Picnic tables under a pergola, with a circular garden beyond"], ["cy-m-7", "Blue shade sails over seating, seen from above"], ["cy-m-8", "Shade sails over a circular plaza with picnic tables and planting"], ["cy-m-9", "The same plaza seen from the courtyard entrance"], ["cy-m-10", "Paths leading to a raised circular planter with a tree"], ["cy-m-11", "Covered swings and a pergola along a paved path"], ["cy-m-12", "An aerial view of paved paths around a pergola with tables"]]],
+        ["Presentation board", "Students designed an architectural presentation board in Canva, Google Drawings or Photoshop to present their proposal to the client.", [["cy-bd-1", "A board setting out the vision, details and colour palette for the space"], ["cy-bd-2", "A board proposing picnic tables beneath mature trees and a space for a gardening club"], ["cy-bd-3", "A board describing a space where students and teachers can come together, with a pergola and shaded seating"], ["cy-bd-4", "A board explaining a circular pergola with plan views and notes on paths, seating and landscaping"], ["cy-bd-5", "A board presenting the student’s vision for a greener courtyard that supports wellbeing"]]]
+      ],
+      trio: [
+        ["Curriculum connections", "The project addresses the Technological Design fundamentals and skills strands through site analysis, scaled drawing and 3D modelling, and the Technology, the Environment, and Society strand through accessibility, sustainability and the needs of the people who use a shared space. Treating the school administration as a client connected the work to Professional Practice and Career Opportunities."],
+        ["Assessment", "Each of the five stages produced evidence that could be assessed and returned with feedback before the next stage began, and the presentation board served as the culminating product."],
+        ["Differentiation and English language learners", "The whole-class site analysis gave every student the same data to begin from, so that no one started the design behind. Students could communicate their ideas largely through models and images, worked from a vocabulary of architectural terms paired with images, and could draft the written vision for their board with sentence frames such as “The purpose of my design is…”."]
+      ],
+      resources: [["Courtyard Design Project Overview", "Assignment brief · slides", "files/Courtyard_Design_Project_Overview.pdf"]],
+      quote: ["I learned how public spaces needed lots of appreciation as I took my time with researching to present a well done courtyard redesign.", "Grade 11–12 Architectural Design student, weekly reflection journal"],
+      reflection: [
+        "This project worked well because the client was real and the site was one students walked through every day. Students who were reluctant to research an abstract design problem were far more invested in a space they had their own opinions about, and the boards they produced reflected that sense of ownership.",
+        "The whole-class site analysis was the most important decision in the unit. Not only did it get the students outside and off their computers, but it modelled the process for everyone, distributed the work of measuring and photographing across groups, and gave students who were new to the language of architecture a shared starting point. I would use this structure with teacher candidates as an example of how to scaffold the first stage of an open-ended design project.",
+        "Teaching CAD software also taught me a practical lesson: walking a whole class through a software tutorial together is chaotic and largely ineffective. Inevitably, some students race ahead, others are lost after the first menu, and the teacher spends the lesson repeating instructions from the front of the room. What worked far better was developing my own step-by-step guides and video tutorials, letting students choose which one to use, and circulating the room to offer at-the-elbow support when students got stuck. Students could work at their own pace, and I could spend my time with the students who needed me most."
+      ]
+    },
+    {
+      slug: "bedroom-makeover", title: "Bedroom Makeover", context: "Grade 10 Technological Design · Windsor, Ontario", cats: ["ontario"],
+      card: ["bm-3d-3", "A SketchUp render of a redesigned bedroom with a seating area and vanity"], hero: ["bm-3d-1", "A SketchUp render of a redesigned bedroom with a desk and gaming chair"],
+      summary: "Students redesigned their own bedroom with a budget of $5,000, moving from a mood board and a measured floor plan to a 3D model and a costed budget.",
+      meta: [["Course", "TDJ2O Technological Design, Grade 10"], ["School", "Windsor-Essex Catholic District School Board"], ["Software", "AutoCAD, SketchUp, spreadsheets"], ["Year", "2022–23 and 2023–24"]],
+      steps: [
+        ["Mood board", "Students identified an interior design style, a colour palette, textiles, finishes and furniture, and assembled them into a mood board that communicated their direction visually.", [["hs-bm-mood", "A Scandinavian-style mood board with a colour palette, furniture and finishes"], ["bm-mood-1", "A Scandinavian-style mood board with wood and grey finishes"], ["bm-mood-2", "A modern design mood board with a warm colour palette"], ["bm-mood-3", "A mid-century modern mood board with furniture and swatches"], ["bm-mood-4", "A Japandi-style mood board"], ["bm-mood-5", "A modern-style bedroom board with paint colours"], ["bm-mood-6", "An industrial and contemporary mood board"]]],
+        ["Measuring and sketching", "Students measured their room, drew a dimensioned floor plan on grid paper, and listed each piece of furniture with its size.", [["hs-bm-sketch", "A measured floor plan sketched on grid paper, with each piece of furniture labelled"], ["bm-sk-1", "A sketched floor plan with a numbered furniture list and dimensions"], ["bm-sk-2", "A floor plan sketched to scale on grid paper"], ["bm-sk-4", "A measured floor plan with furniture placed and dimensioned"], ["drafting", "Hand-drafting a floor plan with a ruler and pencil"]]],
+        ["AutoCAD floor plan", "Students redrew their plan in AutoCAD with walls, doors, windows, furniture and dimensions, which became the basis for the 3D model.", [["hs-bm-plan", "A dimensioned AutoCAD floor plan with the desk, chair and bed labelled"], ["bm-cad-1", "An AutoCAD floor plan with dimensions and labelled furniture"], ["bm-cad-2", "An AutoCAD plan with a desk, sofa, television stand and bed"], ["bm-cad-3", "A compact AutoCAD bedroom plan with a desk, bed and shoe rack"], ["bm-cad-4", "An AutoCAD plan using colour to distinguish walls and furniture"], ["bm-cad-6", "An AutoCAD plan with a separate closet area and wall-thickness notes"], ["bm-cad-5", "An AutoCAD plan drawn on a dark background"]]],
+        ["3D model", "Students turned the floor plan into a SketchUp model, imported furniture, applied materials and finishes, and exported scenes with shadows.", [["hs-bm-3d1", "A SketchUp model with a gaming desk, bookcase and wall art"], ["hs-bm-3d2", "A top-down SketchUp view of the furnished bedroom"], ["hs-bm-3d3", "A SketchUp view of a calm bedroom with a framed print"], ["hs-bm-3d4", "A SketchUp model with built-in bookshelves, a bean bag chair and a desk"], ["bm-3d-1", "A SketchUp render of a redesigned bedroom with a desk and gaming chair"], ["bm-3d-4", "A SketchUp render with a dark headboard and an upholstered bench"], ["bm-3d-3", "A SketchUp render with a seating area, rug and vanity"], ["bm-3d-5", "A SketchUp render with a canopy bed and walk-in closet"], ["bm-3d-2", "A SketchUp render with a window seat and warm wood finishes"], ["bm-3d-6", "A SketchUp render with a bench at the foot of the bed"], ["bm-3d-7", "A SketchUp render with shelving and a framed print"], ["bm-3d-8", "A SketchUp render seen from the doorway"]]],
+        ["Budget", "Students built a budget spreadsheet with a link to every product and formula-based totals, aiming to finish within $100 of the $5,000 budget.", [["bm-budget-1", "A completed budget with each item, its quantity, price and a product link"], ["bm-budget-2", "A second budget showing the subtotal and the total with tax"]]]
+      ],
+      trio: [
+        ["Curriculum connections", "The project addresses Technological Design fundamentals and skills through measuring, sketching, CAD modelling and costing, and connects to Professional Practice and Career Opportunities through the work of interior designers."],
+        ["Assessment", "Students submitted evidence at each of the five stages, and the budget gave a concrete, measurable criterion for the final design."],
+        ["Differentiation and English language learners", "Students worked from a furniture list template and a budget template, and the project began from a space every student knows well. For newcomers, I paired furniture and measurement vocabulary with images, accepted a mood board as the main vehicle for communicating style, and allowed students who did not have a bedroom of their own, or who preferred not to use it, to redesign another room in their home or a fictional one instead."]
+      ],
+      resources: [["Bedroom Makeover Assignment", "Assignment brief · slides", "files/Bedroom_Makeover_Assignment.pdf"], ["Bedroom Makeover Budget Template", "Template · Excel spreadsheet", "files/Bedroom_Makeover_Budget_Template.xlsx"]],
+      reflection: [
+        "The strength of this project is that every skill in it transfers beyond the classroom. Students may never use SketchUp again, but measuring a room accurately, reading a floor plan and building a budget with working formulas are skills they will use for the rest of their lives. I introduced the CAD stage by turning a sketch of my own bedroom into a CAD drawing in front of the class, which showed students that the process applied to real spaces and gave them a worked example to follow.",
+        "The project also taught me to examine the assumptions inside a brief. A bedroom makeover assumes that every student has a bedroom of their own to redesign, and for some students that is not the case. Allowing students to redesign another room in their home or a fictional one kept the same learning goals while making sure the starting point did not exclude anyone, and I would raise that example with teacher candidates when discussing equitable task design."
+      ]
+    },
+    {
+      slug: "desk-organizer", title: "Desk Organizer", context: "Grade 9 Technological Education · Holy Names and Catholic Central, Windsor", cats: ["ontario"],
+      card: ["do-photo-card", "A blue 3D-printed desk organizer with a drawer, holding pens, sticky notes and keys"], hero: ["do-photo", "A blue 3D-printed desk organizer with a drawer, holding pens, sticky notes and keys"],
+      summary: "Students used the design process to design and 3D print a desk organizer for items they actually own and use. I taught the project in Grade 9 Exploring Technologies at Holy Names in 2023, where students finished with a promotional poster, and again in Grade 9 Technology and the Skilled Trades at Catholic Central in 2025, where they printed and tested their designs.",
+      meta: [["Courses", "TIJ1O Exploring Technologies; TAS1O Technology and the Skilled Trades"], ["Schools", "Holy Names and Catholic Central, Windsor"], ["Tools", "TinkerCAD, 3D printers, Canva"], ["Years", "2022–23 and 2025–26"]],
+      steps: [
+        ["Identify the problem and research", "Students defined the problem, identified their user and set rules for their design, then researched existing organizers, tools, materials and a timeline. The 2025 brief required an organizer that held at least three different items, fitted within 90 by 90 by 90 millimetres, had walls no thicker than 2 millimetres and could be printed successfully.", [["do-s1-problem", "A student’s problem statement: too many pens and pencils cluttering the desk"], ["do-s1-rules", "The user, the setting and five design rules"], ["do-s1-problem2", "A second student’s problem statement and user"], ["do-s2-research", "Research on three existing organizers, with what the student liked and disliked about each"], ["do-s2-research2", "A second student’s research on existing organizers"]]],
+        ["Create ideas", "Students sketched three labelled concepts and recorded one strength and one weakness for each.", [["do-s3-sketches", "Three labelled concept sketches on grid paper"], ["do-s3-sketches2", "Three concept sketches, including an organizer with a drawer"]]],
+        ["Choose and model", "Students chose their strongest concept and justified the choice, drew a dimensioned orthographic drawing in three views, and built a 3D model in TinkerCAD, a program they had learned earlier through tutorials and by designing and printing a name keychain.", [["do-s4-choice", "The chosen concept and the student’s reasons for choosing it"], ["do-s4-model", "The chosen design modelled in TinkerCAD, with the student’s name on the front"], ["do-s4-choice2", "A second student’s chosen concept and reasoning"], ["do-s4-model2", "A TinkerCAD model of an organizer with a drawer"], ["do-s4-model3", "A TinkerCAD model of a two-compartment tray"]]],
+        ["Build and test", "Students sent their designs to the 3D printer and tested the printed organizers, scoring each out of ten on three questions: do your objects fit, is it stable and strong, and does it meet the rules from Stage 1.", [["do-photo", "A finished organizer with a working drawer, holding a student’s supplies"], ["do-s5-print2", "A printed organizer in use, with the student’s note that the headphone holder broke and needed to be stronger"], ["do-s5-print", "A printed organizer, with the student’s note that it came out slightly short"], ["do-s5-print3", "A printed tray, with the student’s note that it was too small and that the mesh sides could break easily"]]],
+        ["Improve, reflect and present", "Students identified improvements and reflected on the hardest part of the project, what they learned about 3D design and printing, and what they would change if they were designing the organizer for a company to sell. In 2023, students also designed a poster that promoted their product.", [["do-s6-reflect", "A student’s reflection on what to change and what they learned"], ["do-s6-reflect2", "A second student’s reflection"], ["do-s6-checklist", "The completed checklist for all six stages"]]]
+      ],
+      trio: [
+        ["Curriculum connections", "In Technology and the Skilled Trades, the project addresses Section A, Design Processes and Related Skills, through the engineering design process, prototyping and safe practice. In Exploring Technologies, it formed part of the Technological Design unit."],
+        ["Assessment", "The design criteria doubled as success criteria that students could check for themselves: the organizer had to hold at least three different items they actually own and use, fit within a 90-millimetre cube, keep its walls to 2 millimetres and be a viable 3D print."],
+        ["Differentiation and English language learners", "The design rules gave every student the same clear, measurable targets, and the student workbook broke the project into six stages with a checklist, so that students could track their own progress. TinkerCAD’s block-based modelling reduces the language demands of CAD, students could sketch and label ideas rather than write extended explanations, and the printed organizer itself counted as evidence of learning alongside the written reflection."]
+      ],
+      resources: [["Desk Organizer Design Project Overview", "Assignment brief · slides", "files/Desk_Organizer_Design_Project_Overview.pdf"], ["Desk Organizer Project Student Workbook", "Student workbook · slides", "files/Desk_Organizer_Project_Student_Workbook.pdf"]],
+      reflection: [
+        "The most valuable moment in this project came when students tested their printed organizers. Several did not work as intended: a headphone holder snapped, one organizer came out shorter than planned, and a tray turned out too small for the items it was meant to hold. These failures were arguably the most important learning moments in the project, and we discussed them as a class. Because the brief asked students to test their organizers against their own rules and to explain what they would change, a snapped headphone holder became evidence of learning rather than a reason for disappointment.",
+        "Teaching the project twice, first with a promotional poster as the final stage and then with printing and testing, also showed me how much the final stage of a design task shapes what students learn. A poster can describe a good idea, but a print reveals whether the idea actually works. With teacher candidates, I would use this comparison to discuss how to design a culminating stage that keeps students engaged in the full design process."
+      ]
+    },
+    {
+      slug: "impact-game-design", title: "Impact Game Design", context: "Grade 7 MYP Design · Madrid, Spain", cats: ["myp"],
+      card: ["gd-2-11", "A coloured storyboard for a student game about a social justice issue"], hero: ["gd-3-6", "Annotated code blocks from a student game"],
+      summary: "Acting as game designers for a company that makes free web games, students designed and coded an educational game that raises awareness of a social justice issue facing school-aged children.",
+      meta: [["Course", "MYP Design, Grade 7"], ["School", "International College Spain, Madrid"], ["Tools", "Code.org, Scratch"], ["Year", "2024–25"]],
+      steps: [
+        ["Situation and research", "Students began with the design situation, researched social justice issues affecting children, built a research plan, and completed self-guided Code.org lessons and a test-game tutorial to learn block coding.", [["gd-1-1", "Workbook page: the design situation and the target audience"], ["gd-1-2", "Workbook page: a trend board of popular educational games"], ["gd-1-5", "Workbook page: researching social justice issues such as racism, hunger and poverty"], ["gd-1-8", "Workbook page: a research plan that ranks what the student needs to know"], ["gd-2-17", "Workbook page: remixing a test game in Code.org"]]],
+        ["Analysing existing games", "Students used the ACCESS FM framework to analyse three existing educational games and identify what they could learn from each.", [["gd-1-7", "Workbook page: analysing three existing games about climate and community"], ["gd-1-9", "Workbook page: analysing three existing games against ACCESS FM criteria"]]],
+        ["Specifications and design ideas", "Students wrote specifications justified by their research, then drew annotated wireframes and storyboards for several game ideas and reviewed each idea against the specification.", [["gd-2-1", "Workbook page: specifications with a measure of success for each point"], ["gd-2-3", "A hand-drawn design idea with annotations for each specification"], ["gd-2-7", "A wireframe sketch for a maths game called Math Run"], ["gd-2-8", "A second wireframe exploring the game’s screens and menus"], ["gd-2-11", "A coloured storyboard for a game about a social justice issue"], ["gd-2-15", "A wireframe sketch noting colour choices and player choices"], ["gd-2-16", "Workbook page: reviewing design ideas against the specification"]]],
+        ["Making the game", "Students made their own sprites, built the game in Code.org or Scratch, and kept a production plan and log, recording every change to their plan.", [["gd-4-1", "Workbook page: a production log with dates, actions, time and screenshots"], ["gd-4-3", "Workbook page: a production log showing the code for each screen"], ["gd-4-7", "Workbook page: a production log with a changed background and the reason for it"]]],
+        ["The finished game", "Students presented their finished game in a narrated video demonstration and annotated the code blocks that made it work.", [["gd-3-6", "Annotated code blocks explaining how a sprite moves and responds to the player"], ["gd-4-5", "Annotated code blocks for a game’s instructions and buttons"], ["gd-4-6", "Annotated code blocks for a job interview game"]]],
+        ["Testing and evaluating", "Students designed a test for each specification, surveyed users, explained the improvements they would make, and evaluated the impact of their game on its audience and on the community where the issue occurs.", [["gd-5-1", "Workbook page: testing methods and survey results from users"], ["gd-5-2", "Workbook page: evaluating how well the game met the design brief"], ["gd-5-4", "Workbook page: testing results with charts and improvements"], ["gd-5-5", "Workbook page: evaluating the impact of the solution"]]]
+      ],
+      trio: [
+        ["Unit framework", "Statement of inquiry: “Designers can adapt and innovate experiences which can promote social justice within communities, through interactive technological solutions that explore fairness and development.” Key concept: Communities. Related concepts: Adaptation and Innovation. Global context: Fairness and Development."],
+        ["Assessment", MYP_CRITERIA + " Each section of the workbook opened with the mark scheme for that criterion, with each strand mapped to the slides where students would show evidence."],
+        ["Differentiation and multilingual learners", "Sentence starters such as “Social justice is…” and “I think…” support students as they begin their research, and structured templates guide the game design document and storyboard. Block coding reduces the language demands of programming, students could research their issue in their first language, and the narrated video demonstration could be scripted and rehearsed in advance."]
+      ],
+      resources: [["Impact Game Design Student Workbook", "Student workbook · slides", "files/Impact_Game_Design_Student_Workbook.pdf"]],
+      reflection: [
+        "This unit reminded me that coding tools are temporary while computational thinking is not. Students moved between Code.org and Scratch, and what mattered was whether they could break a game into events, conditions and loops and debug it systematically. Those habits transfer to any language or platform they meet later. The self-guided Code.org lessons also suited the room far better than a whole-class demonstration would have, because students could learn block coding at their own pace while I moved between desks helping whoever was stuck.",
+        "Looking back, the game design document and the storyboard were where the real learning happened. Students who planned carefully spent their coding time solving interesting problems, while students who began coding immediately often had to start again, a lesson a few of them were determined to learn more than once. I would share that contrast with teacher candidates as evidence for making the planning stage visible and assessable."
+      ]
+    },
+    {
+      slug: "monumental-design", title: "Monumental Design", context: "Grade 6 MYP Design · Madrid, Spain", cats: ["myp"],
+      card: ["mo-9-1", "A student’s Tinkercad maquette of a flower monument with its plaque"], hero: ["mo-8-01", "A student’s Tinkercad monument celebrating the Lunar New Year"],
+      summary: "Students entered an imagined town competition for a new public monument, designing a maquette that commemorates an overlooked person or event, or that replaces a monument they believed should be removed.",
+      meta: [["Course", "MYP Design, Grade 6"], ["School", "International College Spain, Madrid"], ["Tools", "Tinkercad"], ["Year", "2024–25"]],
+      steps: [
+        ["Situation and research", "Students explored the monuments they had seen, examined the debate over the vandalized statue of Winston Churchill in London, gathered monuments for a mood board, and completed Tinkercad tutorials to learn 3D modelling.", [["mo-1-1", "Workbook page: a monument the student has visited and what it commemorates"], ["mo-1-2", "Workbook page: researching the debate over a controversial monument"], ["mo-1-4", "Workbook page: a mood board of monuments from around the world"], ["mo-1-5", "Workbook page: a second mood board of monuments"], ["mo-1-3", "Workbook page: screenshots of progress in Tinkercad tutorials"], ["mo-1-7", "Workbook page: practising more advanced 3D modelling techniques"]]],
+        ["Analysing existing monuments", "Students analysed existing monuments against the ACCESS FM criteria, considering function, materials, size, safety and target audience.", [["mo-2-1", "Workbook page: analysing an equestrian statue"], ["mo-2-2", "Workbook page: analysing a peace monument"], ["mo-2-3", "Workbook page: analysing a contemporary monument"]]],
+        ["Specifications and design ideas", "Students wrote specifications covering function, aesthetics, environment, size, material, safety and audience, then developed several design ideas and reviewed them against the specification before choosing one.", [["mo-3-1", "Workbook page: specifications with reasons and testing methods"], ["mo-3-2", "Workbook page: a second student’s specifications"], ["mo-4-5", "A design idea for a monument to a plane that landed on water, with dimensions"], ["mo-4-6", "A second design idea for the same monument"], ["mo-5-1", "Workbook page: reviewing design ideas against the specification"], ["mo-5-3", "Workbook page: justifying the chosen solution"]]],
+        ["Planning and making", "Students drew orthographic plans on grid paper, then built their maquettes in Tinkercad, keeping a production log detailed enough for a peer to repeat their steps.", [["mo-6-1", "Orthographic planning drawing on grid paper"], ["mo-6-2", "A second orthographic planning drawing"], ["mo-7-1", "Workbook page: a production log showing a flower built with the duplication tool"], ["mo-7-4", "Workbook page: a production log for a monument to a dog"], ["mo-7-6", "Workbook page: a production log for a monument with water"]]],
+        ["The finished maquettes", "Students presented annotated 3D models with a plaque-style or Wikipedia-style description explaining what the monument commemorates and why.", [["mo-8-01", "A Tinkercad monument celebrating the Lunar New Year"], ["mo-8-1", "Annotated model: a flower monument commemorating peaceful protest"], ["mo-8-2", "Annotated model: a monument to a plane that landed safely on a river"], ["mo-8-5", "Annotated model: a monument to a cat that rescued her kittens from a fire"], ["mo-8-6", "Annotated model: a monument celebrating a musician"], ["mo-9-1", "Maquette with description: the flower monument and its plaque"], ["mo-9-3", "Maquette with description: the story behind the monument"]]],
+        ["Testing and evaluating", "Students tested their maquettes against their specifications, gathered feedback, and reflected on the impact of their monument and on why remembering the past matters.", [["mo-10-1", "Workbook page: testing methods and results"], ["mo-10-3", "Workbook page: evaluating the impact of the solution"], ["mo-10-4", "Workbook page: a reflection on the unit’s inquiry questions and approaches to learning"]]]
+      ],
+      trio: [
+        ["Unit framework", "Statement of inquiry: “Designers can influence the form and function of public structures in order to communicate important messages that help us not repeat past mistakes.” Key concept: Communication. Related concepts: Function and Form. Global context: Orientation in Space and Time."],
+        ["Assessment", MYP_CRITERIA + " The workbook mapped every strand to the slides where students would show evidence, and closed with a reflection on the unit’s inquiry questions and approaches to learning."],
+        ["Differentiation and multilingual learners", "Guiding questions structure the analysis of existing monuments and the specification table, so that students can focus on ideas rather than on the format of their response. Students could choose a written or an audio description of their monument, monuments from their own countries and cultures were welcome as subjects, and key terms were introduced with images of real monuments."]
+      ],
+      resources: [["Monumental Design Student Workbook", "Student workbook · slides", "files/Monumental_Design_Student_Workbook.pdf"]],
+      reflection: [
+        "I will admit that I had my doubts going into this unit. Asking Grade 6 students to research a person or event, learn 3D modelling software and design a monument for 3D printing seemed like a great deal to expect, and they blew me away. The care they put into their research, and the confidence with which they presented their maquettes, taught me how capable students are when you believe in them and give them a clear structure to work within.",
+        "I also think this unit worked because it invited students to bring their own histories into the design room. Students from different countries chose different people and events to commemorate, and the class discussion about whose stories are told in public space was richer for that range of perspectives. Offering a written or an audio description was a small decision that made a large difference for students who were more confident speaking English than writing it, and I would use this unit with teacher candidates as an example of how a choice of format can preserve the rigour of a task while removing an unnecessary barrier."
+      ]
+    },
+    {
+      slug: "myp-eportfolio", title: "MYP Design ePortfolio", context: "Grade 10 MYP Design · Madrid, Spain", cats: ["myp"],
+      card: ["ep-b-140426", "A student’s 3D model of a planter designed for well-being"], hero: ["ep-c-141617", "A student’s log of the 3D printing process"],
+      summary: "I guided Year 5 students through the MYP Design ePortfolio for IB eAssessment, on the statement of inquiry “Healthy practices can shape well-being.”",
+      meta: [["Course", "MYP Design, Year 5 (Grade 10)"], ["School", "International College Spain, Madrid"], ["Assessment", "MYP eAssessment ePortfolio"], ["Year", "2024–25"]],
+      steps: [
+        ["Inquiring and analysing (November)", "Students explored design contexts through mind maps, chose one of three IB-specified audiences (students aged 5 to 9, 10 to 13 or 14 to 18), identified a need connected to well-being, planned their research and analysed existing solutions.", [["ep-a-135131", "A mind map exploring design contexts connected to well-being"], ["ep-a-135155", "A research plan with justifications and priorities"], ["ep-a-135213", "Analysing existing products"], ["ep-a-135327", "Analysing an existing meal-kit website"]]],
+        ["Developing ideas (January)", "Students wrote specifications, created mood boards and developed a range of design ideas, such as products, spaces or experiences that encourage healthy practices, before presenting a chosen design.", [["ep-b-140348", "A mood board for a planter design"], ["ep-b-140321", "An annotated design idea"], ["ep-b-140535", "An annotated design idea for a healthy-eating website"], ["ep-b-140443", "Planning drawings for a 3D-printed planter"], ["ep-b-140426", "The chosen design, modelled in 3D"]]],
+        ["Creating the solution (February)", "Students planned their production with a timeline, made their solutions, and documented every change to the plan.", [["ep-c-141638", "A Gantt chart planning the production timeline"], ["ep-c-141617", "Logging the 3D printing process step by step"], ["ep-c-141659", "Documenting changes made to the solution during production"], ["ep-c-142108", "A production log for a desk organizer"], ["ep-c-141901", "The final design of a healthy-eating website"]]],
+        ["Evaluating (March)", "Students tested their solutions against their specifications, collected feedback from their target audience, proposed improvements, and evaluated the impact of their work.", [["ep-d-143222", "Testing results with charts"], ["ep-d-143506", "Improvements to a 3D-printed planter"], ["ep-d-143651", "An improvement to a website, shown before and after"], ["ep-d-143545", "Evaluating the impact of the solution"]]]
+      ],
+      trio: [
+        ["Unit framework", "Statement of inquiry: “Healthy practices can shape well-being.” Global context: Scientific and Technical Innovation. Key concept: Development. Related concept: Adaptation."],
+        ["Assessment", MYP_CRITERIA + " Students studied exemplar ePortfolios as models while they worked, and the completed ePortfolios were assessed externally by the IB."],
+        ["Differentiation and multilingual learners", "A unit timeline with a criterion due each month helped students manage a long, independent project. Annotated exemplars showed students what each criterion looked like in practice, individual check-ins at each deadline allowed me to adjust support, and students drafted in their first language where that helped them think before refining their evidence in English."]
+      ],
+      resources: [["Designing for Well-Being: ePortfolio unit", "Unit overview · slides", "files/ePortfolio_Unit_2024-25.pdf"]],
+      reflection: [
+        "Teaching at an IB school gave me a new appreciation for design as an academic discipline. In the MYP, design sits alongside the sciences and the humanities as a subject with its own methods of inquiry and its own criteria for rigour, and I came to see how readily its way of thinking applies across other subjects. The MYP design cycle, in particular, proved to be an incredibly valuable organizing tool for both projects and assessment, and I brought many of those lessons back with me to Canada when I returned from Spain.",
+        "Guiding students through an IB eAssessment reinforced my belief that the process is more important than the product. The ePortfolio is assessed almost entirely on the evidence of inquiry, development and evaluation, and students who documented their thinking honestly, including their mistakes, produced stronger portfolios than students who presented only a polished result.",
+        "The monthly timeline was, I think, the most important support I provided, for the students and, frankly, for my own peace of mind. A long, independent project can overwhelm students at any language level, and breaking it into criterion-sized pieces made the process manageable while preserving its rigour."
+      ]
+    }
+  ];
+
+  var FILTERS = [["all", "All"], ["ontario", "Ontario Tech Ed"], ["myp", "IB MYP Design"]];
+
+  function esc(s) {
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+  function ph(label, ratio) {
+    return '<div class="ph ' + ratio + '" role="img" aria-label="Placeholder: ' + esc(label) + '">' + IMG + '<span>' + esc(label) + '</span></div>';
+  }
+  function fitKey(key) { return !/^(mech|robot|cad-model|drafting)/.test(key); }
+  function media(key, label, ratio, fit) {
+    if (key && IMGS[key]) {
+      var cls = 'shot ' + ratio + (fit ? ' fit' : '') + (key === 'logo-hero' ? ' fit on-black' : '');
+      return '<figure class="' + cls + '"><img src="' + IMGS[key] + '" alt="' + esc(label) + '"></figure>';
+    }
+    return ph(label, ratio);
+  }
+  function carousel(list, title) {
+    var n = list.length;
+    var slides = list.map(function (m, i) {
+      var pic = (m[0] && IMGS[m[0]]) ?
+        '<div class="shot r1610' + (fitKey(m[0]) ? ' fit' : '') + '"><img src="' + IMGS[m[0]] + '" alt=""></div>' : ph(m[1], 'r1610');
+      return '<figure class="car-slide" role="group" aria-roledescription="slide" aria-label="' + (i + 1) + ' of ' + n + '">' + pic + '<figcaption>' + esc(m[1]) + '</figcaption></figure>';
+    }).join('');
+    var dots = list.map(function (m, i) { return '<span' + (i === 0 ? ' class="on"' : '') + '></span>'; }).join('');
+    return '<div class="car" role="region" aria-roledescription="carousel" aria-label="Images for ' + esc(title) + '">' +
+      '<div class="car-track" tabindex="0" aria-label="Use the arrow keys to move between images">' + slides + '</div>' +
+      '<div class="car-bar"><button type="button" class="car-btn" data-dir="-1" aria-label="Previous image" disabled>' + LEFT + '</button>' +
+      '<span class="car-count" aria-live="polite">1 / ' + n + '</span>' +
+      '<button type="button" class="car-btn" data-dir="1" aria-label="Next image">' + RIGHT + '</button>' +
+      '<span class="car-dots" aria-hidden="true">' + dots + '</span></div></div>';
+  }
+  function video(id, label) {
+    var url = 'https://www.youtube.com/watch?v=' + id;
+    if (/^https?:$/.test(location.protocol)) {
+      return '<figure class="shot r1610 vid"><iframe src="https://www.youtube-nocookie.com/embed/' + id + '" title="' + esc(label) + '" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe></figure>' +
+        '<p class="vid-cap"><a href="' + url + '" target="_blank" rel="noopener">Watch on YouTube</a></p>';
+    }
+    return '<a class="shot r1610 vid-link" href="' + url + '" target="_blank" rel="noopener" style="background-image:url(https://i.ytimg.com/vi/' + id + '/hqdefault.jpg)"><span>Watch the ' + esc(label.charAt(0).toLowerCase() + label.slice(1)) + ' on YouTube</span></a>';
+  }
+  function stepMedia(s) {
+    if (typeof s[2] === 'string' && s[2].indexOf('mp4:') === 0) {
+      if (HAS_FILES) return '<figure class="shot r1610 vid"><video controls muted loop playsinline preload="metadata"' + (s[5] && IMGS[s[5]] ? ' poster="' + IMGS[s[5]] + '"' : '') + ' aria-label="' + esc(s[3]) + '"><source src="' + esc(s[2].slice(4)) + '" type="video/mp4"></video></figure><p class="vid-cap">' + esc(s[3]) + '</p>';
+      return stepMedia([s[0], s[1], s[4]]);
+    }
+    if (typeof s[2] === 'string' && s[2].indexOf('yt:') === 0) return video(s[2].slice(3), s[3]);
+    if (Array.isArray(s[2])) {
+      if (s[2].length > 1) return carousel(s[2], s[0]);
+      return media(s[2][0][0], s[2][0][1], 'r1610', fitKey(s[2][0][0]));
+    }
+    return media(s[2], s[3], 'r1610', fitKey(s[2]));
+  }
+
+  /* Filters and grid */
+  var filter = "all";
+  try { var saved = localStorage.getItem("jc-filter"); if (saved) filter = saved; } catch (e) {}
+  var tabs = document.getElementById("tabs");
+  var grid = document.getElementById("project-grid");
+  if (!FILTERS.some(function (f) { return f[0] === filter; })) filter = "all";
+
+  function renderTabs() {
+    tabs.innerHTML = FILTERS.map(function (f) {
+      return '<button type="button" class="tab" data-f="' + f[0] + '" aria-pressed="' + (f[0] === filter) + '">' + f[1] + '</button>';
+    }).join("");
+  }
+  function renderGrid() {
+    var shown = PROJECTS.filter(function (p) { return filter === "all" || p.cats.indexOf(filter) !== -1; });
+    grid.innerHTML = shown.map(function (p) {
+      return '<a class="card" href="#project-' + p.slug + '">' + media(p.card[0], p.card[1], "r43") +
+        '<div><h3>' + esc(p.title) + '</h3><div class="muted" style="font-size:16px">' + esc(p.context) + '</div></div></a>';
+    }).join("");
+  }
+  tabs.addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-f]");
+    if (!b) return;
+    filter = b.getAttribute("data-f");
+    try { localStorage.setItem("jc-filter", filter); } catch (err) {}
+    renderTabs(); renderGrid();
+  });
+  renderTabs(); renderGrid();
+
+  /* Project detail */
+  var viewHome = document.getElementById("view-home");
+  var viewProject = document.getElementById("view-project");
+  var viewPhil = document.getElementById("view-philosophy");
+
+  function renderProject(p) {
+    var i = PROJECTS.indexOf(p);
+    var prev = PROJECTS[(i - 1 + PROJECTS.length) % PROJECTS.length];
+    var next = PROJECTS[(i + 1) % PROJECTS.length];
+    var meta = p.meta.map(function (m) { return '<div><dt>' + esc(m[0]) + '</dt><dd>' + esc(m[1]) + '</dd></div>'; }).join("");
+    var steps = p.steps.map(function (s, n) {
+      return '<div class="step"><div class="txt">' + (p.numbered === false ? '' : '<div class="num">Step ' + (n + 1) + '</div>') + '<h3>' + esc(s[0]) + '</h3><p>' + esc(s[1]) + '</p></div>' +
+        '<div class="img">' + stepMedia(s) + '</div></div>';
+    }).join("");
+    var trio = p.trio.map(function (t, i) { return '<details class="acc"><summary><span class="acc-num">' + (i < 9 ? '0' : '') + (i + 1) + '</span><span class="acc-title">' + esc(t[0]) + '</span><span class="acc-icon" aria-hidden="true"></span></summary><div class="acc-body"><p>' + esc(t[1]) + '</p></div></details>'; }).join("");
+    var res = p.resources.length ? p.resources.map(function (r) {
+      var isFile = r[2] && r[2].indexOf('files/') === 0;
+      var right = !r[2] ? '<span class="pending">Link to come</span>' :
+        (isFile && !HAS_FILES) ? '<span class="pending">Available on the full site</span>' :
+        (/\.xlsx$/i.test(r[2]) ? '<a href="' + esc(r[2]) + '" download style="font-weight:600;white-space:nowrap">Download</a>' :
+        '<a href="' + esc(r[2]) + '" target="_blank" rel="noopener" style="font-weight:600;white-space:nowrap">' + (/\.pdf$/i.test(r[2]) ? 'Open PDF' : 'Watch') + '</a>');
+      return '<li><span><b>' + esc(r[0]) + '</b><small>' + esc(r[1]) + '</small></span>' + right + '</li>';
+    }).join("") : '<li><span><small>[Add any certificates, photos or documents.]</small></span></li>';
+
+    viewProject.innerHTML =
+      '<div class="wrap pd-head">' +
+        '<a class="back" href="#projects">' + LEFT + 'All projects</a>' +
+        '<h1 id="pd-title" tabindex="-1">' + esc(p.title) + '</h1>' +
+        '<p class="lede">' + esc(p.summary) + '</p>' +
+        '<dl class="meta">' + meta + '</dl>' +
+        media(p.hero[0], p.hero[1], "r219", /^(mo|gd|ep|lg|md)-|^do-photo$/.test(p.hero[0])) +
+      '</div>' +
+      '<section class="wrap section" aria-labelledby="pd-process"><div class="kicker-bar" aria-hidden="true"></div><h2 id="pd-process" class="h2">' + esc(p.processTitle || 'How the project worked') + '</h2><div class="steps">' + steps + '</div></section>' +
+      '<section class="band pd-acc" style="margin-top:72px" aria-labelledby="pd-acc-title"><div class="wrap"><div class="acc-head"><h2 id="pd-acc-title" class="h2">Curriculum, assessment and differentiation</h2><button type="button" class="acc-all" aria-pressed="false">Expand all</button></div><p class="acc-hint">Select a heading to read how the project connects to the curriculum, how students were assessed, and how I supported different learners.</p><div class="acc-list">' + trio + '</div></div></section>' +
+      '<section class="wrap section"><div class="split">' +
+        '<div class="narrow res"><h2 style="font-size:32px;margin-bottom:18px">Project resources</h2><ul>' + res + '</ul></div>' +
+        '<div class="wide reflection"><h2 style="font-size:32px;margin-bottom:18px">Reflection</h2>' + [].concat(p.reflection).map(function (r) { return '<p class="lede">' + esc(r) + '</p>'; }).join('') + (p.quote ? '<figure class="pq"><blockquote>“' + esc(p.quote[0]) + '”</blockquote><figcaption>' + esc(p.quote[1]) + '</figcaption></figure>' : '') + '</div>' +
+      '</div></section>' +
+      '<div class="wrap" style="padding-block:56px 88px"><nav class="pd-nav" aria-label="More projects">' +
+        '<a class="next" href="#project-' + prev.slug + '">' + LEFT + '<span>Previous: ' + esc(prev.title) + '</span></a>' +
+        '<a class="next" href="#project-' + next.slug + '"><span>Next: ' + esc(next.title) + '</span>' + RIGHT + '</a>' +
+      '</nav></div>';
+  }
+
+  /* PDF links: open embedded PDFs in a new tab where the browser allows it, otherwise download */
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest("a[data-pdf]");
+    if (!a || a.getAttribute("href").indexOf("data:") !== 0) return;
+    try {
+      var b64 = a.getAttribute("href").split(",")[1], bin = atob(b64), arr = new Uint8Array(bin.length);
+      for (var i = 0; i < bin.length; i++) arr[i] = bin.charCodeAt(i);
+      var url = URL.createObjectURL(new Blob([arr], { type: "application/pdf" }));
+      var w = window.open(url, "_blank");
+      if (w) e.preventDefault();
+    } catch (err) {}
+  });
+
+  /* Carousels */
+  function carIndex(t) { return Math.round(t.scrollLeft / Math.max(1, t.children[1] ? t.children[1].offsetLeft - t.children[0].offsetLeft : t.clientWidth)); }
+  function carUpdate(t) {
+    var car = t.closest(".car"), n = t.children.length, i = carIndex(t);
+    car.querySelector(".car-count").textContent = (i + 1) + " / " + n;
+    var b = car.querySelectorAll(".car-btn"); b[0].disabled = i <= 0; b[1].disabled = i >= n - 1;
+    var d = car.querySelectorAll(".car-dots span");
+    for (var k = 0; k < d.length; k++) d[k].className = k === i ? "on" : "";
+  }
+  function carGo(t, dir) {
+    var i = Math.max(0, Math.min(t.children.length - 1, carIndex(t) + dir));
+    t.scrollTo({ left: t.children[i].offsetLeft - t.children[0].offsetLeft });
+  }
+  viewProject.addEventListener("click", function (e) {
+    var b = e.target.closest(".car-btn");
+    if (b) carGo(b.closest(".car").querySelector(".car-track"), Number(b.getAttribute("data-dir")));
+  });
+  viewProject.addEventListener("keydown", function (e) {
+    var t = e.target;
+    if (!t.classList || !t.classList.contains("car-track")) return;
+    if (e.key === "ArrowRight") { e.preventDefault(); carGo(t, 1); }
+    else if (e.key === "ArrowLeft") { e.preventDefault(); carGo(t, -1); }
+  });
+  viewProject.addEventListener("scroll", function (e) {
+    var t = e.target;
+    if (!t.classList || !t.classList.contains("car-track")) return;
+    clearTimeout(t._carTimer);
+    t._carTimer = setTimeout(function () { carUpdate(t); }, 80);
+  }, true);
+
+  /* Project accordions */
+  function pdAccSync(sec) {
+    var items = sec.querySelectorAll('details.acc'), btn = sec.querySelector('.acc-all');
+    if (!btn) return;
+    var allOpen = items.length && Array.prototype.every.call(items, function (d) { return d.open; });
+    btn.textContent = allOpen ? 'Collapse all' : 'Expand all';
+    btn.setAttribute('aria-pressed', allOpen ? 'true' : 'false');
+  }
+  viewProject.addEventListener('click', function (e) {
+    var b = e.target.closest('.pd-acc .acc-all');
+    if (!b) return;
+    var sec = b.closest('.pd-acc'), open = b.getAttribute('aria-pressed') !== 'true';
+    sec.querySelectorAll('details.acc').forEach(function (d) { d.open = open; });
+    pdAccSync(sec);
+  });
+  viewProject.addEventListener('toggle', function (e) {
+    var sec = e.target.closest && e.target.closest('.pd-acc');
+    if (sec) pdAccSync(sec);
+  }, true);
+
+  /* Email: assembled in the browser so it is not in the page source */
+  (function () {
+    var el = document.getElementById('email');
+    if (!el || !el.dataset.u) return;
+    var rev = function (s) { return s.split('').reverse().join(''); };
+    el.textContent = rev(el.dataset.u) + String.fromCharCode(64) + rev(el.dataset.d);
+  })();
+
+  /* Router */
+  var current = "home";
+  function show(which) {
+    viewHome.hidden = which !== "home";
+    viewProject.hidden = which !== "project";
+    viewPhil.hidden = which !== "philosophy";
+    current = which;
+  }
+  function route() {
+    var h = (location.hash || "").replace(/^#/, "");
+    closeMenu();
+    if (h.indexOf("project-") === 0) {
+      var slug = h.slice(8);
+      var p = PROJECTS.filter(function (x) { return x.slug === slug; })[0];
+      if (p) {
+        renderProject(p); show("project");
+        window.scrollTo(0, 0);
+        var t = document.getElementById("pd-title"); if (t) t.focus({ preventScroll: true });
+        return;
+      }
+    }
+    if (h === "philosophy") { show("philosophy"); window.scrollTo(0, 0); return; }
+    var wasHome = current === "home";
+    show("home");
+    var el = h ? document.getElementById(h) : null;
+    if (el) {
+      if (wasHome) el.scrollIntoView();
+      else requestAnimationFrame(function () { el.scrollIntoView({ behavior: "auto" }); });
+    } else if (!wasHome) {
+      window.scrollTo(0, 0);
+    }
+  }
+  window.addEventListener("hashchange", route);
+
+  /* Mobile menu */
+  var header = document.getElementById("site-header");
+  var menuBtn = document.getElementById("menu-btn");
+  function closeMenu() { header.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false"); }
+  menuBtn.addEventListener("click", function () {
+    var open = !header.classList.contains("open");
+    header.classList.toggle("open", open);
+    menuBtn.setAttribute("aria-expanded", String(open));
+  });
+
+  /* Copy email */
+  var copyBtn = document.getElementById("copy-email");
+  copyBtn.addEventListener("click", function () {
+    var text = document.getElementById("email").textContent;
+    function selectIt() {
+      var r = document.createRange(); r.selectNodeContents(document.getElementById("email"));
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      copyBtn.textContent = "Selected, press Ctrl+C";
+    }
+    try {
+      navigator.clipboard.writeText(text).then(function () { copyBtn.textContent = "Copied"; }, selectIt);
+    } catch (e) { selectIt(); }
+    setTimeout(function () { copyBtn.textContent = "Copy email"; }, 2500);
+  });
+
+  /* Theme toggle */
+  var root = document.documentElement;
+  var themeBtns = document.querySelectorAll("[data-theme-set]");
+  function effectiveTheme() {
+    var t = root.getAttribute("data-theme");
+    if (t === "light" || t === "dark") return t;
+    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  }
+  function syncToggle() {
+    var t = effectiveTheme();
+    for (var i = 0; i < themeBtns.length; i++) {
+      themeBtns[i].setAttribute("aria-pressed", String(themeBtns[i].getAttribute("data-theme-set") === t));
+    }
+  }
+  function setTheme(t) {
+    root.setAttribute("data-theme", t);
+    try { localStorage.setItem("jc-theme", t); } catch (e) {}
+    syncToggle();
+  }
+  try {
+    var savedTheme = localStorage.getItem("jc-theme");
+    if (savedTheme === "light" || savedTheme === "dark") root.setAttribute("data-theme", savedTheme);
+  } catch (e) {}
+  for (var j = 0; j < themeBtns.length; j++) {
+    themeBtns[j].addEventListener("click", function () { setTheme(this.getAttribute("data-theme-set")); });
+  }
+  if (window.matchMedia) {
+    var mq = window.matchMedia("(prefers-color-scheme: dark)");
+    if (mq.addEventListener) mq.addEventListener("change", syncToggle);
+  }
+  syncToggle();
+
+  route();
+})();
+</script>
+
+</body>
+</html>
