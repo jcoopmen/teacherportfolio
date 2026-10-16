@@ -246,6 +246,7 @@ footer .wrap { align-items: center; }
 .vid video { object-fit: cover; }
 .more-link { font-weight: 600; white-space: nowrap; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.vid-slide video { display: block; width: 100%; height: 100%; object-fit: cover; background: #000; }
 /* Hero */
 .hero { padding-block: 80px 0; display: flex; flex-wrap: wrap; align-items: center; gap: 40px 56px; }
 .hero-text { flex: 1 1 100%; min-width: 0; }
@@ -937,7 +938,7 @@ footer .wrap { padding-block: 26px; display: flex; flex-wrap: wrap; justify-cont
         ["Analysing existing games", "Students used the ACCESS FM framework to analyse three existing educational games and identify what they could learn from each.", [["gd-1-7", "Workbook page: analysing three existing games about climate and community"], ["gd-1-9", "Workbook page: analysing three existing games against ACCESS FM criteria"]]],
         ["Specifications and design ideas", "Students wrote specifications justified by their research, then drew annotated wireframes and storyboards for several game ideas and reviewed each idea against the specification.", [["gd-2-1", "Workbook page: specifications with a measure of success for each point"], ["gd-2-3", "A hand-drawn design idea with annotations for each specification"], ["gd-2-7", "A wireframe sketch for a maths game called Math Run"], ["gd-2-8", "A second wireframe exploring the game’s screens and menus"], ["gd-2-11", "A coloured storyboard for a game about a social justice issue"], ["gd-2-15", "A wireframe sketch noting colour choices and player choices"], ["gd-2-16", "Workbook page: reviewing design ideas against the specification"]]],
         ["Making the game", "Students made their own sprites, built the game in Code.org or Scratch, and kept a production plan and log, recording every change to their plan.", [["gd-4-1", "Workbook page: a production log with dates, actions, time and screenshots"], ["gd-4-3", "Workbook page: a production log showing the code for each screen"], ["gd-4-7", "Workbook page: a production log with a changed background and the reason for it"]]],
-        ["The finished game", "Students presented their finished game in a narrated video demonstration and annotated the code blocks that made it work.", "mp4:files/Impact_Game_Design_Gameplay.mp4", "Gameplay from seven student games, each on a different social justice issue (no sound)", [["gd-3-6", "Annotated code blocks explaining how a sprite moves and responds to the player"], ["gd-4-5", "Annotated code blocks for a game’s instructions and buttons"], ["gd-4-6", "Annotated code blocks for a job interview game"]], "gd-video-poster"],
+        ["The finished game", "Students presented their finished game in a narrated video demonstration and annotated the code blocks that made it work.", [["mp4:files/Impact_Game_Design_Gameplay.mp4", "Gameplay from seven student games, each on a different social justice issue (no sound)", "gd-video-poster"], ["gd-3-6", "Annotated code blocks explaining how a sprite moves and responds to the player"], ["gd-4-5", "Annotated code blocks for a game’s instructions and buttons"], ["gd-4-6", "Annotated code blocks for a job interview game"]]],
         ["Testing and evaluating", "Students designed a test for each specification, surveyed users, explained the improvements they would make, and evaluated the impact of their game on its audience and on the community where the issue occurs.", [["gd-5-1", "Workbook page: testing methods and survey results from users"], ["gd-5-2", "Workbook page: evaluating how well the game met the design brief"], ["gd-5-4", "Workbook page: testing results with charts and improvements"], ["gd-5-5", "Workbook page: evaluating the impact of the solution"]]]
       ],
       trio: [
@@ -1020,10 +1021,14 @@ footer .wrap { padding-block: 26px; display: flex; flex-wrap: wrap; justify-cont
     return ph(label, ratio);
   }
   function carousel(list, title) {
+    list = list.filter(function (m) { return HAS_FILES || String(m[0]).indexOf('mp4:') !== 0; });
+    if (list.length === 1) return media(list[0][0], list[0][1], STILLS[list[0][0]] ? 'r169' : 'r1610', fitKey(list[0][0]));
     var n = list.length;
     var allStill = list.every(function (m) { return STILLS[m[0]]; });
     var slides = list.map(function (m, i) {
-      var pic = (m[0] && IMGS[m[0]]) ?
+      var pic = String(m[0]).indexOf('mp4:') === 0 ?
+        '<div class="shot ' + (allStill ? 'r169' : 'r1610') + ' vid vid-slide"><video controls muted loop playsinline preload="metadata"' + (m[2] && IMGS[m[2]] ? ' poster="' + IMGS[m[2]] + '"' : '') + ' aria-label="' + esc(m[1]) + '"><source src="' + esc(m[0].slice(4)) + '" type="video/mp4"></video><button type="button" class="vid-play" aria-label="Play video"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"></path></svg></button></div>' :
+        (m[0] && IMGS[m[0]]) ?
         '<div class="shot ' + (allStill ? 'r169' : 'r1610') + (fitKey(m[0]) ? ' fit' : '') + '"><img src="' + IMGS[m[0]] + '" alt=""></div>' : ph(m[1], 'r1610');
       return '<figure class="car-slide" role="group" aria-roledescription="slide" aria-label="' + (i + 1) + ' of ' + n + '">' + pic + '<figcaption>' + esc(m[1]) + '</figcaption></figure>';
     }).join('');
@@ -1152,6 +1157,7 @@ footer .wrap { padding-block: 26px; display: flex; flex-wrap: wrap; justify-cont
   }
   function carGo(t, dir) {
     var i = Math.max(0, Math.min(t.children.length - 1, carIndex(t) + dir));
+    t.querySelectorAll('video').forEach(function (v) { v.pause(); });
     t.scrollTo({ left: t.children[i].offsetLeft - t.children[0].offsetLeft });
   }
   viewProject.addEventListener("click", function (e) {
