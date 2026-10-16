@@ -244,6 +244,8 @@ footer .wrap { align-items: center; }
 @media (prefers-reduced-motion: reduce) { .vid-play { transition: none; } }
 .r169 { aspect-ratio: 16 / 9; }
 .vid video { object-fit: cover; }
+.more-link { font-weight: 600; white-space: nowrap; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 /* Hero */
 .hero { padding-block: 80px 0; display: flex; flex-wrap: wrap; align-items: center; gap: 40px 56px; }
 .hero-text { flex: 1 1 100%; min-width: 0; }
@@ -797,13 +799,13 @@ footer .wrap { padding-block: 26px; display: flex; flex-wrap: wrap; justify-cont
         ["Learning the form", "An introductory lesson set out what video journalists do: find stories, interview subjects, film footage, and edit and publish video. Students learned how to prepare interview questions, why good audio is essential, and how B-roll explains or supplements an interview. They then analysed a professional example in a research document, identifying techniques such as interviews, B-roll, music and motion graphics and explaining how each contributed to the story.", [["vj-research", "A student’s analysis of how a professional journalist used B-roll and interviews"]]],
         ["Planning and interviewing", "Groups wrote interview questions and a script that paired each line of A-roll with planned B-roll. Stories included a spotlight on the construction class, a football game, a look inside the main office, the gym and the hairstyling program.", [["vj-street", "A street-style interview in a school hallway"], ["vj-interview", "An interview answer with on-screen subtitles"], ["vj-construction", "A spotlight on the construction class, with the teacher guiding a student"], ["vj-hair", "B-roll from the hairstyling classroom"], ["vj-editing", "Editing the hairstyling story in Adobe Premiere Pro"]]],
         ["Comet News", "The first edition of Comet News, in May 2024, was introduced by student anchors and included segments on the school’s Arts Fest, the student-run cafeteria in the hospitality program, the Grade 11 retreat, the senior boys soccer season, a “What are you listening to?” street feature and a teacher trivia game. It closed by inviting viewers to take Communications Technology and learn to make a video like it themselves.", [["vj-title", "The Comet News title card"], ["vj-music", "An interview with the school’s music teacher"], ["vj-cn-reporter", "A student reporter introduced on location outside the school"], ["vj-cn-cafe", "B-roll of students making pizza in the hospitality program’s kitchen"], ["vj-cn-band", "A student band member, the singer and bassist, interviewed in the music room"], ["vj-cn-soccer", "Footage of the senior boys soccer team in a match"], ["vj-cn-trivia", "A Comet News segment featuring me in the Communications Technology lab"]]],
-        ["Public service announcements", "For the Windsor-Essex County Health Unit’s Break the Vape challenge, students produced short public service announcements on youth vaping, each ending with one of the challenge’s calls to action, such as “Support a friend” or “Choose to live vape free.” A class entry won second place in the Grade 9 to 12 category.", [["vj-psa1", "A PSA closing on the call to action “Quit vaping now!”"], ["vj-psa2", "A PSA with the message “Break the trend, don’t start vaping”"], ["vj-psa3", "An animated PSA set in a school hallway"]]],
+        ["Public service announcements", "For the Windsor-Essex County Health Unit’s Break the Vape challenge, students produced short public service announcements on youth vaping, each ending with one of the challenge’s calls to action, such as “Support a friend” or “Choose to live vape free.” A class entry won second place in the Grade 9 to 12 category. [Read more](https://wechu.org/news-release-health-unit-announces-winners-break-vape-challenge)", [["vj-psa1", "A PSA closing on the call to action “Quit vaping now!”"], ["vj-psa2", "A PSA with the message “Break the trend, don’t start vaping”"], ["vj-psa3", "An animated PSA set in a school hallway"]]],
       ],
       trio: [
         ["Curriculum connections", "The project addresses the Communications Technology Fundamentals and Skills strands through research, interviewing, filming and editing, and the Technology, the Environment, and Society strand through the role of media in a school community."],
         ["Differentiation and English language learners", "Students worked in groups with defined roles, such as interviewer, camera operator and editor, so that each student could contribute from a position of strength. Interview questions could be drafted in a first language before being refined in English, B-roll allowed students to tell part of a story visually, and on-screen subtitles supported both viewers and students who were still developing spoken English."]
       ],
-      resources: [["Video Journalism Research", "Template · document", "files/Video_Journalism_Research_Template.pdf"], ["Break the Vape Challenge winners", "Windsor-Essex County Health Unit · news release, May 2024", "https://wechu.org/news-release-health-unit-announces-winners-break-vape-challenge"]],
+      resources: [["Video Journalism Research", "Template · document", "files/Video_Journalism_Research_Template.pdf"]],
       reflection: ["This project grew out of my service learning project in teacher’s college, in which I designed a digital news literacy program for older adults in Windsor. That experience convinced me that the ability to judge whether a news story is reliable is a precursor to meaningful participation in a democratic society. One of the best ways for students to develop that judgement, I would argue, is to report the news themselves, because students who have had to check a fact, find a second source and decide what to leave out are more likely to read the news critically.", "Comet News also gave students a real audience. Knowing that their segments would be played to the whole school gave the work a purpose beyond a grade, and it made the class a service to the school community. I also see journalism as a continuation of much older storytelling traditions, including Indigenous oral traditions, which reminds students that a communication technology is only as good as the story it carries. With teacher candidates, I would use this project to discuss how an authentic audience can motivate students more effectively than marks alone."]
     },
     {
@@ -1000,6 +1002,9 @@ footer .wrap { padding-block: 26px; display: flex; flex-wrap: wrap; justify-cont
 
   var FILTERS = [["all", "All"], ["ontario", "Ontario Tech Ed"], ["myp", "IB MYP Design"]];
 
+  function linkify(s) {
+    return s.replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, function (m, t, u) { return '<a href="' + u + '" target="_blank" rel="noopener" class="more-link">' + t + '<span class="visually-hidden"> (opens in a new tab)</span></a>'; });
+  }
   function esc(s) {
     return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
   }
@@ -1090,7 +1095,7 @@ footer .wrap { padding-block: 26px; display: flex; flex-wrap: wrap; justify-cont
     var next = PROJECTS[(i + 1) % PROJECTS.length];
     var meta = p.meta.map(function (m) { return '<div><dt>' + esc(m[0]) + '</dt><dd>' + esc(m[1]) + '</dd></div>'; }).join("");
     var steps = p.steps.map(function (s, n) {
-      return '<div class="step"><div class="txt">' + (p.numbered === false ? '' : '<div class="num">Step ' + (n + 1) + '</div>') + '<h3>' + esc(s[0]) + '</h3><p>' + esc(s[1]) + '</p></div>' +
+      return '<div class="step"><div class="txt">' + (p.numbered === false ? '' : '<div class="num">Step ' + (n + 1) + '</div>') + '<h3>' + esc(s[0]) + '</h3><p>' + linkify(esc(s[1])) + '</p></div>' +
         '<div class="img">' + stepMedia(s) + '</div></div>';
     }).join("");
     var trio = p.trio.map(function (t, i) { return '<details class="acc"><summary><span class="acc-num">' + (i < 9 ? '0' : '') + (i + 1) + '</span><span class="acc-title">' + esc(t[0]) + '</span><span class="acc-icon" aria-hidden="true"></span></summary><div class="acc-body"><p>' + esc(t[1]) + '</p></div></details>'; }).join("");
