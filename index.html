@@ -225,10 +225,9 @@ details.acc[open] .acc-num { color: var(--fg); }
 .eq-fig { margin: 0; }
 .eq-photo { aspect-ratio: 4 / 5; }
 .eq-fig figcaption { margin-top: 10px; font-size: 15px; color: var(--muted); }
-.grad-study { margin-top: 44px; padding-top: 28px; border-top: 1px solid var(--line); display: grid; grid-template-columns: 300px minmax(0, 75ch); gap: 0 48px; align-items: start; }
-.grad-logo { aspect-ratio: 2 / 1; padding: 18px 22px; margin-top: 6px; }
-.grad-logo img { max-width: 100%; max-height: 100%; }
-@media (max-width: 799px) { .grad-study { grid-template-columns: 1fr; gap: 24px; } .grad-logo { max-width: 300px; } }
+.grad-study { margin-top: 44px; padding-top: 28px; border-top: 1px solid var(--line); display: grid; grid-template-columns: 240px minmax(0, 75ch); gap: 0 48px; align-items: start; }
+.grad-logo { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; border-radius: 4px; margin-top: 6px; }
+@media (max-width: 799px) { .grad-study { grid-template-columns: 1fr; gap: 24px; } .grad-logo { max-width: 200px; } }
 .grad-study h3 { font-size: 24px; margin: 0 0 12px; }
 .grad-study p { font-size: 17px; line-height: 1.65; color: var(--fg-2); margin: 0 0 14px; }
 footer .wrap { align-items: center; }
@@ -557,7 +556,7 @@ footer .wrap { padding-block: 26px; display: flex; flex-wrap: wrap; justify-cont
       <figure><blockquote>“Jordan’s collaborative approach to work and his respectful and inclusive leadership style would make him a welcome addition to any team.”</blockquote><figcaption>Director, Leadership and Organizational Development, Unity Health Toronto · Reference letter, 2021</figcaption></figure>
     </div>
     <div class="grad-study">
-      <div class="logo-tile grad-logo"><img src="images/logo-oise.png" alt="University of Toronto, Ontario Institute for Studies in Education (OISE) logo"></div>
+      <img class="grad-logo" src="images/logo-oise-square.png" width="560" height="560" alt="University of Toronto, Ontario Institute for Studies in Education (OISE) logo">
       <div class="grad-text">
       <h3>Graduate study</h3>
       <p>My M.Ed. in Adult Education at OISE gave me the theoretical foundation for how I work with adult learners, including teacher candidates. Across courses such as Introduction to Adult Education, Adult Learning Theory, Introduction to Professions, Work and Learning, Creating a Learning Organization, and Indigenous Knowledge, I examined how adults learn, how professions shape the identities of their members, and how learning communities form, both in person and online.</p>
